@@ -757,8 +757,8 @@ const fsSync = require('fs'); // 스트림 배포용 동기 모듈
 const { exec } = require('child_process');
 
 const CURRENT_VERSION = '1.0.0'; // 🛠️ 현재 데모 프로그램의 베이스 버전 낙인
-const GITHUB_VERSION_URL = 'https://raw.githubusercontent.com/질문자님ID/저장소명/main/version.json';
-const GITHUB_EXE_URL = 'https://github.com/질문자님ID/저장소명/releases/latest/download/app.exe';
+const GITHUB_VERSION_URL = 'https://raw.githubusercontent.com/umemee/demo/main/version.json';
+const GITHUB_EXE_URL = 'https://github.com/umemee/demo/releases/latest/download/app.exe';
 
 function checkUpdate() {
   console.log(`[Update Sync] 원격 저장소 버전 검사를 개시합니다... (현재 버전: v${CURRENT_VERSION})`);
