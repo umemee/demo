@@ -25,7 +25,7 @@
 2. 9GB 고성능 AI 모델 파일 다운로드 및 이름 변경
    - 아래의 허깅페이스 공식 저장소 주소에 접속합니다:
      https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/blob/main/gemma-4-E2B-it-Q4_K_M.gguf
-   - 화면 중앙의 [download] 버튼을 눌러 9GB 용량의 모델 파일을 다운로드합니다.
+   - 화면 중앙 좌측의 [download] 버튼을 눌러 파일을(3GB 용량) 다운로드합니다.
    - ⚠️ 중요: 다운로드가 완료되면 파일 이름을 반드시 아래와 같이 똑같이 변경해 주세요.
      - 바꿀 파일 이름: gemma4.gguf
    - 이름이 바뀐 [gemma4.gguf] 파일을 바탕화면의 'AI_매칭시스템' 폴더(app.exe가 있는 곳)로 이동시켜 줍니다.
