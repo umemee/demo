@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>AI 지원사업 상담 브리핑 워크스페이스</title>
+    
+    <script src="tailwind.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-dim": "#dadad7", "inverse-primary": "#a5d0b9", "surface-container-highest": "#e2e3e0", 
+                      "on-background": "#1a1c1a", "outline": "#717973", "outline-variant": "#c1c8c2",
+                      "on-secondary": "#ffffff", "background": "#f4f5f2", "surface": "#ffffff", 
+                      "surface-bright": "#f9faf6", "primary": "#012d1d", "on-tertiary": "#ffffff", 
+                      "error": "#ba1a1a", "on-primary-container": "#86af99", "on-surface": "#1a1c1a",
+                      "error-container": "#ffdad6", "on-error": "#ffffff", "surface-variant": "#e2e3e0", 
+                      "surface-tint": "#3f6653", "primary-container": "#1b4332", "primary-fixed": "#c1ecd4", 
+                      "surface-container-high": "#e8e8e5", "primary-fixed-dim": "#a5d0b9", "on-surface-variant": "#414844",
+                      "secondary-container": "#d8e2dc", "on-primary": "#ffffff", "surface-container": "#eeeeeb", 
+                      "surface-container-low": "#f9faf6"
+              },
+              "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+              "spacing": { "margin": "32px", "md": "24px", "base": "4px", "xl": "80px", "sm": "16px", "xs": "8px", "lg": "48px" },
+              "fontFamily": {
+                      "label-caps": ["Noto Sans KR"], "display-lg": ["Noto Sans KR"], "headline-md": ["Noto Sans KR"],
+                      "body-md": ["Noto Sans KR"], "title-sm": ["Noto Sans KR"], "body-sm": ["Noto Sans KR"]
+              },
+              "fontSize": {
+                      "label-caps": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                      "headline-md": ["24px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                      "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                      "title-sm": ["18px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "600" }],
+                      "body-sm": ["14px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                      "body-lg": ["18px", {"lineHeight":"1.6","fontWeight":"400"}],
+                      "label-large": ["14px", {"lineHeight":"1.4","fontWeight":"600"}],
+                      "title-medium": ["20px", {"lineHeight":"1.5","fontWeight":"600"}]
+              }
+            }
+          }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .premium-shadow { box-shadow: 0 12px 40px -12px rgba(27, 67, 50, 0.12), 0 4px 12px -4px rgba(27, 67, 50, 0.06); }
+        .soft-shadow { box-shadow: 0 4px 16px -4px rgba(27, 67, 50, 0.05); }
+        .card-depth { box-shadow: 0 2px 8px -2px rgba(27, 67, 50, 0.08); }
+        
+        /* 로딩 스피너 애니메이션 */
+        .loader {
+            border: 3px solid var(--surface-container-highest);
+            border-bottom-color: var(--primary);
+            border-radius: 50%; display: inline-block; box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+
+<header class="bg-surface border-b border-outline-variant sticky w-full top-0 z-50 premium-shadow">
+    <div class="flex justify-between items-center w-full px-margin h-16 max-w-[1280px] mx-auto">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-primary-container rounded flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px] text-on-primary">domain</span>
+            </div>
+            <h1 class="text-title-sm font-bold text-primary tracking-tight">AI 지원사업 상담 브리핑</h1>
+        </div>
+        <div class="flex items-center gap-md">
+            <button id="btnNewBriefing" class="bg-primary text-on-primary text-body-sm font-bold rounded-lg py-2 px-4 flex items-center justify-center gap-2 hover:bg-primary-container transition-colors shadow-sm">
+                <span class="material-symbols-outlined text-[18px]">add</span>
+                <span>새 브리핑 시작</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="flex-1 w-full max-w-[1280px] mx-auto p-margin flex flex-col">
+    
+    <section class="flex flex-col mb-xl transition-all duration-500" id="screen1">
+        <div class="bg-surface rounded-2xl border border-outline-variant premium-shadow flex flex-col md:flex-row overflow-hidden">
+            
+            <div class="w-full md:w-[40%] bg-surface-container-low border-r border-outline-variant p-lg flex flex-col gap-md">
+                <div>
+                    <h3 class="text-title-sm mb-sm flex items-center gap-2 text-primary font-bold">
+                        <span class="material-symbols-outlined">upload_file</span> 기업 자료 기반 분석
+                    </h3>
+                    
+                    <label for="pdfInput" id="pdfDropZone" class="cursor-pointer border-2 border-outline-variant border-dashed bg-surface rounded-xl p-md text-center flex flex-col items-center justify-center gap-3 soft-shadow hover:border-primary hover:bg-surface-bright transition-colors group">
+                        <input type="file" id="pdfInput" accept=".pdf" class="hidden" />
+                        
+                        <div id="uploadStateEmpty" class="flex flex-col items-center">
+                            <div class="w-12 h-12 bg-surface-container rounded-full flex items-center justify-center mb-2 group-hover:bg-primary-fixed transition-colors">
+                                <span class="material-symbols-outlined text-[28px] text-on-surface-variant group-hover:text-primary">note_add</span>
+                            </div>
+                            <p class="text-body-md text-on-surface font-medium">클릭하여 PDF 업로드</p>
+                            <p class="text-body-sm text-outline mt-1">또는 파일을 이곳으로 드래그</p>
+                        </div>
+
+                        <div id="uploadStateDone" class="hidden flex flex-col items-center w-full">
+                            <div class="w-12 h-12 bg-primary-fixed rounded-full flex items-center justify-center mb-2">
+                                <span class="material-symbols-outlined text-[28px] text-primary">check_circle</span>
+                            </div>
+                            <p id="uploadedFileName" class="text-body-md text-on-surface font-medium truncate w-full px-4">파일명.pdf</p>
+                            <span id="uploadStatusBadge" class="bg-primary-fixed-dim text-on-primary-fixed-variant text-label-caps px-3 py-1 rounded-full mt-2 mb-2">업로드 대기 중</span>
+                        </div>
+                    </label>
+
+                    <div id="extractionActionZone" class="hidden mt-4">
+                        <button id="btnRunExtraction" class="w-full bg-surface border border-outline text-primary font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-primary-fixed-dim transition-all premium-shadow">
+                            <span id="btnExtractIcon" class="material-symbols-outlined text-[20px]">document_scanner</span>
+                            <span id="btnExtractText">AI 기업 정보 추출 시작</span>
+                        </button>
+                    </div>
+
+                    <div class="bg-surface-container p-4 rounded-xl border border-outline-variant mt-4">
+                        <p class="text-body-sm text-on-surface-variant flex items-start gap-2">
+                            <span class="material-symbols-outlined text-[18px] text-primary shrink-0">info</span>
+                            PDF를 업로드하고 추출 버튼을 누르면 기업 정보가 자동으로 채워집니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full md:w-[60%] p-lg flex flex-col bg-surface">
+                <div class="flex justify-between items-center mb-md pb-sm border-b border-outline-variant">
+                    <h3 class="text-title-sm font-bold flex items-center gap-2 text-on-surface">
+                        <span class="material-symbols-outlined text-primary">fact_check</span> 추출된 기업 정보 확인
+                    </h3>
+                    <span id="formStatusBadge" class="text-label-caps text-on-surface-variant bg-surface-container-high px-3 py-1 rounded-full flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">edit</span> 직접 입력 가능
+                    </span>
+                </div>
+                
+                <div class="space-y-6 flex-1">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-label-large font-bold text-on-surface-variant">회사명</label>
+                            <input id="companyName" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all" type="text" placeholder="PDF에서 자동 추출됨" />
+                        </div>
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-label-large font-bold text-on-surface-variant">지역</label>
+                            <input id="location" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all" type="text" placeholder="PDF에서 자동 추출됨" />
+                        </div>
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-label-large font-bold text-on-surface-variant">업종 / 분야</label>
+                            <input id="bizType" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all" type="text" placeholder="PDF에서 자동 추출됨" />
+                        </div>
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-label-large font-bold text-primary flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[20px]">calendar_month</span> 설립일 (업력 요건)
+                            </label>
+                            <input id="estDate" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all" type="text" placeholder="YYYY-MM-DD" />
+                        </div>
+                    </div>
+
+                    <div class="border-t border-outline-variant pt-5">
+                        <h4 class="text-title-medium font-bold text-primary mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[22px]">analytics</span> AI 정밀 추출 및 매칭 데이터
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex flex-col gap-1.5 md:col-span-2">
+                                <label class="text-label-large font-bold text-on-surface-variant">현재 제품 및 사업 단계</label>
+                                <input id="currentStage" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all" type="text" placeholder="예: 시제품 개발 완료, 상용화 검증 단계" />
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-label-large font-bold text-on-surface-variant">신청 주체 형태</label>
+                                <input id="applicantType" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all" type="text" placeholder="예: 중소기업(법인), 개인사업자" />
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-label-large font-bold text-on-surface-variant">벤처 / 기술인증 현황</label>
+                                <input id="ventureStatus" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all" type="text" placeholder="예: 벤처기업 확인서 보유, 기업부설연구소" />
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-label-large font-bold text-on-surface-variant">투자 유치 성과 단계</label>
+                                <input id="investmentStatus" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all" type="text" placeholder="예: 시드 투자 완료, 투자 유치 중" />
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-label-large font-bold text-on-surface-variant">최근 매출액 (단위: 원)</label>
+                                <input id="salesAmount" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all" type="text" placeholder="예: 300000000" />
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-label-large font-bold text-on-surface-variant">상시 근로자 수 (단위: 명)</label>
+                                <input id="employeeCount" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all" type="text" placeholder="예: 4" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-outline-variant pt-5">
+                        <h4 class="text-title-medium font-bold text-primary mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[22px]">checklist</span> 심층 매칭 요건 (수동 확인 권장)
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-label-large font-bold text-on-surface-variant">청년/연령 조건</label>
+                                <select id="youthFounder" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all text-on-surface">
+                                    <option value="">(확인 불가)</option>
+                                    <option value="yes">청년창업 (만 39세 이하)</option>
+                                    <option value="no">청년 아님</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-label-large font-bold text-on-surface-variant">기술이전 상태</label>
+                                <select id="techTransfer" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all text-on-surface">
+                                    <option value="">(확인 불가)</option>
+                                    <option value="completed">이전 완료</option>
+                                    <option value="in_progress">진행 중</option>
+                                    <option value="planned">예정 / 계획</option>
+                                    <option value="not_applicable">해당 없음 (자체 기술)</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-label-large font-bold text-on-surface-variant">인증 / 실증 필요 여부</label>
+                                <input id="certTestNeed" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all" type="text" placeholder="예: 인증, 성능검정, 실증, 파일럿 등" />
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-label-large font-bold text-on-surface-variant">판로 및 매출 상태</label>
+                                <input id="salesRecordStatus" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all" type="text" placeholder="예: 수출 발생, 테스트 판매 등" />
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-label-large font-bold text-on-surface-variant">해외진출 의도</label>
+                                <select id="exportIntent" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all text-on-surface">
+                                    <option value="">(확인 불가)</option>
+                                    <option value="active">진행 중</option>
+                                    <option value="planned">예정 / 계획</option>
+                                    <option value="exploring">탐색 / 관심</option>
+                                    <option value="none">의향 없음</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-label-large font-bold text-on-surface-variant">목표 대상 국가</label>
+                                <input id="targetCountry" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all" type="text" placeholder="예: 일본, 미국, 베트남 등" />
+                            </div>
+                                <div class="flex flex-col gap-1.5">
+                                <label class="text-label-large font-bold text-on-surface-variant">농식품 / 스마트농업 특화 분야 여부</label>
+                                <select id="greenAgriFlag" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all text-on-surface">
+                                    <option value="">(확인 불가)</option>
+                                    <option value="yes">해당됨 (특화 분야)</option>
+                                    <option value="maybe">관련성 있음</option>
+                                    <option value="no">해당 없음</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-label-large font-bold text-on-surface-variant">제조 인프라 여부 (공장 유무)</label>
+                                <select id="hasOwnFactory" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all text-on-surface">
+                                    <option value="">(확인 불가)</option>
+                                    <option value="yes">자체 공장 보유</option>
+                                    <option value="no">외주 위탁 생산 (OEM 등)</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col gap-1.5 md:col-span-2">
+                                <label class="text-label-large font-bold text-on-surface-variant">정부/기관 주관 수상 및 인증 이력</label>
+                                <input id="govAwardsCertificates" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all" type="text" placeholder="예: 농식품 창업콘테스트 장관상, 벤처기업인증, HACCP 인증 등" />
+                            </div>
+                            <div class="flex flex-col gap-1.5 md:col-span-2">
+                                <label class="text-label-large font-bold text-on-surface-variant">지리적 가점 위치 (특화 클러스터)</label>
+                                <input id="geographicAdvantage" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm transition-all" type="text" placeholder="예: 익산 진흥원 본원, 김제 스마트팜 혁신밸리 등" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-outline-variant pt-5">
+                        <div class="grid grid-cols-1 gap-4">
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-label-large font-bold text-on-surface-variant">제품 및 기술 요약</label>
+                                <textarea id="techSummary" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm resize-none transition-all" rows="3" placeholder="주요 보유 핵심 기술력을 입력하세요"></textarea>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-label-large font-bold text-on-surface-variant">주요 필요 분야 및 애로사항</label>
+                                <textarea id="needs" class="w-full bg-surface border border-outline-variant rounded-xl px-5 py-3.5 text-body-lg focus:border-primary focus:ring-2 focus:ring-primary outline-none shadow-sm resize-none transition-all" rows="3" placeholder="어떤 형태의 연계 지원이 시급하게 필요하신가요?"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-lg pt-sm flex justify-end">
+                    <button id="btnGenerateBriefing" class="bg-primary text-on-primary text-title-sm font-bold px-8 py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-primary-container transition-all premium-shadow transform hover:-translate-y-0.5">
+                        <span id="btnGenerateText">지원사업 브리핑 생성</span>
+                        <span id="btnGenerateIcon" class="material-symbols-outlined text-[24px]">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="resultDivider" class="w-full flex items-center my-xl hidden">
+        <div class="flex-1 border-t border-outline-variant"></div>
+        <span class="px-4 text-label-caps text-outline-variant bg-background">결과 화면 미리보기</span>
+        <div class="flex-1 border-t border-outline-variant"></div>
+    </div>
+
+    <section class="hidden flex-col gap-lg pb-xl bg-surface-container-low p-8 rounded-3xl border border-outline-variant premium-shadow opacity-0 transition-opacity duration-700" id="screen2">
+        <div class="text-center mb-sm">
+            <h2 id="resultTitle" class="text-[32px] font-bold text-primary mb-2">기업 맞춤형 지원사업 브리핑</h2>
+            <p class="text-body-md text-on-surface-variant">입력된 정보를 바탕으로 AI가 분석한 검토 후보입니다.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
+            <div class="lg:col-span-1 bg-surface rounded-2xl border border-outline-variant p-md soft-shadow flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-surface-container rounded-full flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-[18px]">business</span>
+                        </div>
+                        <h4 class="text-title-sm font-bold">현재 기업 요약</h4>
+                    </div>
+                    <p id="resultSummary" class="text-body-sm text-on-surface-variant leading-relaxed">-</p>
+                </div>
+            </div>
+            <div class="lg:col-span-2 bg-primary-container rounded-2xl border border-primary p-lg premium-shadow text-on-primary flex flex-col justify-center relative overflow-hidden">
+                <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[120px] opacity-10">insights</span>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="material-symbols-outlined text-[24px]">stars</span>
+                        <h4 class="text-headline-md font-bold">조건을 확인한 뒤 검토할 후보가 있습니다.</h4>
+                    </div>
+                    <p class="text-body-md text-inverse-primary max-w-2xl">
+                        신청 전 기업 상태와 자격 조건을 확인하면 판단이 더 명확해집니다. 상담 시 우측의 필요 조건을 중점적으로 체크해주세요.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-md">
+            <div class="flex items-center mb-md border-b border-outline-variant pb-2">
+                <h3 class="text-title-sm text-primary flex items-center gap-2 font-bold">
+                    <span class="material-symbols-outlined">fact_check</span>
+                    조건 확인 후 검토 후보 <span id="candidateCount" class="bg-surface-container-high text-on-surface px-2 py-0.5 rounded-full text-sm">0</span>
+                </h3>
+            </div>
+            <div id="cardsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-lg"></div>
+        </div>
+
+        <div class="mt-lg pt-lg border-t border-outline-variant flex flex-col-reverse md:flex-row justify-between items-center gap-4">
+            <button id="btnRestart" class="w-full md:w-auto bg-transparent border border-outline text-on-surface font-bold px-6 py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-surface-container transition-colors">
+                <span class="material-symbols-outlined text-[20px]">refresh</span> 새 파일로 다시 시작하기
+            </button>
+            <button id="btnEdit" class="w-full md:w-auto bg-primary text-on-primary font-bold px-8 py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-primary-container transition-colors premium-shadow">
+                <span class="material-symbols-outlined text-[20px]">edit</span> 기업 정보 수정하기
+            </button>
+        </div>
+    </section>
+
+</main>
+
+<script>
+let state = { selectedFile: null, uploadedCaseId: null, activeCaseId: null, running: false, hiddenAiData: {} };
+
+// DOM Elements
+const pdfInput = document.getElementById('pdfInput');
+const pdfDropZone = document.getElementById('pdfDropZone');
+const uploadStateEmpty = document.getElementById('uploadStateEmpty');
+const uploadStateDone = document.getElementById('uploadStateDone');
+const uploadedFileName = document.getElementById('uploadedFileName');
+const uploadStatusBadge = document.getElementById('uploadStatusBadge');
+const extractionActionZone = document.getElementById('extractionActionZone');
+
+const btnRunExtraction = document.getElementById('btnRunExtraction');
+const btnExtractIcon = document.getElementById('btnExtractIcon');
+const btnExtractText = document.getElementById('btnExtractText');
+
+const btnGenerateBriefing = document.getElementById('btnGenerateBriefing');
+const btnGenerateText = document.getElementById('btnGenerateText');
+const btnGenerateIcon = document.getElementById('btnGenerateIcon');
+
+const screen1 = document.getElementById('screen1');
+const screen2 = document.getElementById('screen2');
+const resultDivider = document.getElementById('resultDivider');
+const cardsContainer = document.getElementById('cardsContainer');
+
+// File Selection Handling
+function syncSelectedFilename() {
+    const file = pdfInput.files && pdfInput.files.length > 0 ? pdfInput.files[0] : null;
+    if (file) {
+        uploadStateEmpty.classList.add('hidden'); 
+        uploadStateDone.classList.remove('hidden');
+        extractionActionZone.classList.remove('hidden');
+        uploadedFileName.textContent = file.name;
+        uploadStatusBadge.textContent = "추출 버튼을 눌러주세요";
+        
+        btnExtractIcon.className = "material-symbols-outlined text-[20px]";
+        btnExtractIcon.textContent = "document_scanner";
+        btnExtractText.textContent = "AI 기업 정보 추출 시작";
+        btnRunExtraction.disabled = false;
+        btnRunExtraction.classList.remove('opacity-80', 'cursor-not-allowed');
+    } else {
+        uploadStateEmpty.classList.remove('hidden'); 
+        uploadStateDone.classList.add('hidden');
+        extractionActionZone.classList.add('hidden');
+    }
+}
+
+async function fetchJson(url, options = {}) {
+    try {
+        const response = await fetch(url, options);
+        let data = null;
+        try { data = await response.json(); } catch (e) {}
+        return { response, data };
+    } catch (error) {
+        return { response: { ok: false }, data: { error: error.message } };
+    }
+}
+
+function fileToBase64(file) {
+    return file.arrayBuffer().then((buffer) => {
+        let binary = ""; const bytes = new Uint8Array(buffer); const chunkSize = 0x8000;
+        for (let i = 0; i < bytes.length; i += chunkSize) { binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize)); }
+        return btoa(binary);
+    });
+}
+
+// [추가된 기능] 파일의 고유 SHA-256 해시를 계산하는 함수
+async function calculateFileHash(file) {
+    const arrayBuffer = await file.arrayBuffer();
+    const hashBuffer = await crypto.subtle.digest('SHA-256', arrayBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// 중복 파일 체크 기능이 결합되어 고도화된 PDF 추출 프로세스
+async function processPdf() {
+    const file = pdfInput.files[0];
+    if (!file || state.running) return;
+
+    try {
+        state.running = true;
+        btnExtractIcon.textContent = ""; 
+        btnExtractIcon.className = "loader w-5 h-5"; 
+        btnExtractText.textContent = "고유 식별자 계산 중...";
+        btnRunExtraction.disabled = true;
+        btnRunExtraction.classList.add('opacity-80', 'cursor-not-allowed');
+        uploadStatusBadge.textContent = "해시 분석 중...";
+
+        // 1. 브라우저 내부에서 파일 고유 해시값 계산
+        const fileHash = await calculateFileHash(file);
+
+        // 2. 서버에 이 파일 해시로 이미 분석한 이력이 있는지 조회
+        btnExtractText.textContent = "중복 파일 확인 중...";
+        const { response: resCheck, data: dataCheck } = await fetchJson("/api/check-duplicate-file", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ file_hash: fileHash, filename: file.name })
+        });
+
+        // [이력이 확인된 경우] 서버 업로드를 패스하고 즉시 기존 데이터를 화면에 기입
+        if (resCheck.ok && dataCheck.is_duplicate) {
+            state.activeCaseId = dataCheck.case_id;
+            uploadStatusBadge.textContent = "기존 데이터 자동 로드 완료";
+            
+            const fields = dataCheck.draft_fields || {};
+            const v2Fields = dataCheck.v2_safe_candidate_fields || {};
+            const getVal = (obj) => {
+                if (!obj) return "";
+                const val = obj.value;
+                return Array.isArray(val) ? val.join("\n") : (val || "");
+            };
+            
+            // 💡 단 하나의 v2Fields 선언만 활용하여 메모리 바인딩 완료
+            state.hiddenAiData = {
+                total_investment_amount: v2Fields.total_investment_amount?.value || 0,
+                annual_revenue: v2Fields.annual_revenue?.value || 0,
+                value_chain_tag: v2Fields.value_chain_tag?.value || "",
+                agrifood_value_chain: v2Fields.agrifood_value_chain?.value || "",
+                has_overseas_partner_or_loi: v2Fields.has_overseas_partner_or_loi?.value || "no",
+                green_bio_or_smart_agri: v2Fields.green_bio_or_smart_agri?.value || null
+            };
+
+            if(document.getElementById('companyName')) document.getElementById('companyName').value = getVal(fields.company_name_or_alias);
+            if(document.getElementById('location')) document.getElementById('location').value = getVal(fields.region);
+            if(document.getElementById('bizType')) document.getElementById('bizType').value = getVal(fields.industry_field);
+            if(document.getElementById('techSummary')) document.getElementById('techSummary').value = getVal(fields.product_tech_summary);
+            if(document.getElementById('needs')) document.getElementById('needs').value = getVal(fields.top_needs_or_pain_points);
+            
+            // 💡 중복 라인을 깔끔히 도려내어 오류를 완전히 해결했습니다.
+            if(document.getElementById('estDate')) document.getElementById('estDate').value = getVal(v2Fields.establishment_date || fields.establishment_date);
+            if(document.getElementById('currentStage')) document.getElementById('currentStage').value = getVal(v2Fields.current_stage || fields.current_stage);
+            if(document.getElementById('applicantType')) document.getElementById('applicantType').value = getVal(v2Fields.applicant_type);
+            if(document.getElementById('ventureStatus')) document.getElementById('ventureStatus').value = getVal(v2Fields.venture_confirmation_status);
+            if(document.getElementById('investmentStatus')) document.getElementById('investmentStatus').value = getVal(v2Fields.investment_status);
+            if(document.getElementById('salesAmount')) document.getElementById('salesAmount').value = getVal(v2Fields.sales_amount);
+            if(document.getElementById('employeeCount')) document.getElementById('employeeCount').value = getVal(v2Fields.employee_count);
+            
+            // 추가된 7개 필드 화면에 자동 기입
+            if(document.getElementById('youthFounder')) document.getElementById('youthFounder').value = getVal(v2Fields.youth_founder_condition_status);
+            if(document.getElementById('techTransfer')) document.getElementById('techTransfer').value = getVal(v2Fields.technology_transfer_status);
+            if(document.getElementById('certTestNeed')) document.getElementById('certTestNeed').value = getVal(v2Fields.certification_or_test_need);
+            if(document.getElementById('salesRecordStatus')) document.getElementById('salesRecordStatus').value = getVal(v2Fields.sales_record_status);
+            if(document.getElementById('exportIntent')) document.getElementById('exportIntent').value = getVal(v2Fields.export_intent);
+            if(document.getElementById('targetCountry')) document.getElementById('targetCountry').value = getVal(v2Fields.target_country_or_market);
+            if(document.getElementById('greenAgriFlag')) document.getElementById('greenAgriFlag').value = getVal(v2Fields.green_bio_or_smart_agri_flag);
+            
+            // 💡 [신규 스키마] 공장 유무, 수상 이력, 지리적 이점 화면 자동 기입 (캐시 복원)
+            if(document.getElementById('hasOwnFactory')) document.getElementById('hasOwnFactory').value = getVal(v2Fields.has_own_factory);
+            if(document.getElementById('govAwardsCertificates')) document.getElementById('govAwardsCertificates').value = getVal(v2Fields.government_awards_certificates);
+            if(document.getElementById('geographicAdvantage')) document.getElementById('geographicAdvantage').value = getVal(v2Fields.geographic_advantage);
+
+            document.getElementById('formStatusBadge').innerHTML = `<span class="material-symbols-outlined text-[14px]">history</span> 이전 기록 불러옴`;
+            btnExtractText.textContent = "기존 기록 활용 완료";
+            btnExtractIcon.className = "material-symbols-outlined text-[20px]";
+            btnExtractIcon.textContent = "check_circle";
+            return; // 중복 파일이므로 여기서 함수를 즉시 종료합니다.
+        }
+
+        // [새로운 파일인 경우] 정상적으로 신규 업로드 및 분석 트랙 진행
+        btnExtractText.textContent = "서버 전송 중...";
+        uploadStatusBadge.textContent = "서버 통신 중...";
+
+        const dataBase64 = await fileToBase64(file);
+        const { response: resUp, data: dataUp } = await fetchJson("/api/upload-pdf", {
+            method: "POST", headers: { "content-type": "application/json" },
+            body: JSON.stringify({ 
+                case_id: state.activeCaseId || "", 
+                filename: file.name, 
+                mime_type: file.type || "application/pdf", 
+                data_base64: dataBase64,
+                file_hash: fileHash // 서버 데이터베이스 저장용 해시값 전달
+            })
+        });
+
+        if (!resUp.ok) throw new Error("업로드 실패");
+        state.activeCaseId = dataUp.case_id || state.activeCaseId;
+        
+        btnExtractText.textContent = "AI 정보 분석 중...";
+        uploadStatusBadge.textContent = "AI 분석 중...";
+        
+        await fetchJson("/api/extract-uploaded-pdf", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ case_id: state.activeCaseId }) });
+        const { data: dataDraft } = await fetchJson("/api/generate-autofill-draft", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ case_id: state.activeCaseId }) });
+
+        if (dataDraft && dataDraft.ok && dataDraft.draft) {
+            const draftFields = dataDraft.draft.draft_fields || {};
+            const v2Fields = dataDraft.draft.v2_safe_candidate_fields || {};
+            
+            const getVal = (obj) => {
+                if (!obj) return "";
+                const val = obj.value;
+                if (Array.isArray(val)) return val.join(", ");
+                return val || "";
+            };
+
+            // 💡 [핵심 패치] 화면에 보이지 않는 고도화 정량/구조화 데이터(Integer, ENUM)를 메모리에 안전하게 저장
+            state.hiddenAiData = {
+                total_investment_amount: v2Fields.total_investment_amount?.value || 0,
+                annual_revenue: v2Fields.annual_revenue?.value || 0,
+                value_chain_tag: v2Fields.value_chain_tag?.value || "",
+                agrifood_value_chain: v2Fields.agrifood_value_chain?.value || "",
+                has_overseas_partner_or_loi: v2Fields.has_overseas_partner_or_loi?.value || "no",
+                green_bio_or_smart_agri: v2Fields.green_bio_or_smart_agri?.value || null
+            };
+
+            // 기본 필드 매핑
+            if(document.getElementById('companyName')) document.getElementById('companyName').value = getVal(draftFields.company_name_or_alias);
+            if(document.getElementById('location')) document.getElementById('location').value = getVal(draftFields.region);
+            if(document.getElementById('bizType')) document.getElementById('bizType').value = getVal(draftFields.industry_field);
+            if(document.getElementById('techSummary')) document.getElementById('techSummary').value = getVal(draftFields.product_tech_summary);
+            if(document.getElementById('needs')) document.getElementById('needs').value = getVal(draftFields.top_needs_or_pain_points);
+            
+            if(document.getElementById('estDate')) document.getElementById('estDate').value = getVal(v2Fields.establishment_date);
+            if(document.getElementById('currentStage')) document.getElementById('currentStage').value = getVal(v2Fields.current_stage);
+            if(document.getElementById('applicantType')) document.getElementById('applicantType').value = getVal(v2Fields.applicant_type);
+            if(document.getElementById('ventureStatus')) document.getElementById('ventureStatus').value = getVal(v2Fields.venture_confirmation_status);
+            if(document.getElementById('investmentStatus')) document.getElementById('investmentStatus').value = getVal(v2Fields.investment_status);
+            if(document.getElementById('salesAmount')) document.getElementById('salesAmount').value = getVal(v2Fields.sales_amount);
+            if(document.getElementById('employeeCount')) document.getElementById('employeeCount').value = getVal(v2Fields.employee_count);
+
+            // 추가된 7개 필드 화면에 자동 기입
+            if(document.getElementById('youthFounder')) document.getElementById('youthFounder').value = getVal(v2Fields.youth_founder_condition_status);
+            if(document.getElementById('techTransfer')) document.getElementById('techTransfer').value = getVal(v2Fields.technology_transfer_status);
+            if(document.getElementById('certTestNeed')) document.getElementById('certTestNeed').value = getVal(v2Fields.certification_or_test_need);
+            if(document.getElementById('salesRecordStatus')) document.getElementById('salesRecordStatus').value = getVal(v2Fields.sales_record_status);
+            if(document.getElementById('exportIntent')) document.getElementById('exportIntent').value = getVal(v2Fields.export_intent);
+            if(document.getElementById('targetCountry')) document.getElementById('targetCountry').value = getVal(v2Fields.target_country_or_market);
+            if(document.getElementById('greenAgriFlag')) document.getElementById('greenAgriFlag').value = getVal(v2Fields.green_bio_or_smart_agri_flag);
+            
+            // 💡 [신규 스키마] 공장 유무, 수상 이력, 지리적 이점 화면 자동 기입 (AI 신규 추출)
+            if(document.getElementById('hasOwnFactory')) document.getElementById('hasOwnFactory').value = getVal(v2Fields.has_own_factory);
+            if(document.getElementById('govAwardsCertificates')) document.getElementById('govAwardsCertificates').value = getVal(v2Fields.government_awards_certificates);
+            if(document.getElementById('geographicAdvantage')) document.getElementById('geographicAdvantage').value = getVal(v2Fields.geographic_advantage);
+
+            // [추가] 추출과 자동기입이 완벽히 끝난 후, 다음번 중복 검사를 위해 서버 장부에 기록 요청
+            await fetchJson("/api/save-duplicate-hash", {
+                method: "POST", headers: { "content-type": "application/json" },
+                body: JSON.stringify({
+                    file_hash: fileHash,
+                    case_id: state.activeCaseId,
+                    draft_fields: draftFields,             // 💡 기존 필드 독립
+                    v2_safe_candidate_fields: v2Fields     // 💡 V2 필드 독립
+                })
+            });
+            
+        } else {
+            console.error("❌ 서버 데이터 구조 불일치", dataDraft);
+        }
+
+        uploadStatusBadge.textContent = "추출 완료";
+        uploadStatusBadge.className = "bg-primary-container text-on-primary text-label-caps px-3 py-1 rounded-full mt-2 mb-2";
+        document.getElementById('formStatusBadge').innerHTML = `<span class="material-symbols-outlined text-[14px]">check</span> AI 자동 완성됨`;
+
+        btnExtractText.textContent = "추출 성공!";
+        btnExtractIcon.className = "material-symbols-outlined text-[20px]";
+        btnExtractIcon.textContent = "check_circle";
+
+    } catch (err) {
+        uploadStatusBadge.textContent = "추출 실패 (수동 입력)";
+        uploadStatusBadge.className = "bg-error text-on-error text-label-caps px-3 py-1 rounded-full mt-2 mb-2";
+        btnExtractText.textContent = "추출 실패. 다시 시도";
+        btnExtractIcon.className = "material-symbols-outlined text-[20px]";
+        btnExtractIcon.textContent = "warning";
+        btnRunExtraction.disabled = false;
+        btnRunExtraction.classList.remove('opacity-80', 'cursor-not-allowed');
+    } finally {
+        state.running = false;
+    }
+}
+
+// 지원사업 브리핑 생성 프로세스
+async function generateBriefing() {
+    if (state.running) return;
+    
+    let seconds = 0;
+    let timerInterval;
+
+    try {
+        state.running = true;
+        
+        // 1초마다 버튼의 시간을 올려주어 사용자가 불안하지 않게 합니다.
+        timerInterval = setInterval(() => {
+            seconds++;
+            btnGenerateText.textContent = `AI가 분석 중입니다... (${seconds}초 경과)`;
+        }, 1000);
+
+        btnGenerateIcon.textContent = ""; 
+        btnGenerateIcon.className = "loader w-6 h-6 ml-2 border-surface";
+        btnGenerateBriefing.classList.add('opacity-80', 'cursor-not-allowed');
+
+        // 1. 서버에 데이터 저장 (index.html 규격과 100% 동일)
+        const payload = {
+            case_id: state.activeCaseId || "",
+            fields: {
+                company_name_or_alias: document.getElementById('companyName').value,
+                region: document.getElementById('location').value,
+                industry_field: document.getElementById('bizType').value,
+                establishment_date: document.getElementById('estDate').value,
+                current_stage: document.getElementById('currentStage').value,
+                product_tech_summary: document.getElementById('techSummary').value,
+                top_needs_or_pain_points: document.getElementById('needs').value,
+                applicant_type: document.getElementById('applicantType').value,
+                venture_confirmation_status: document.getElementById('ventureStatus').value,
+                investment_status: document.getElementById('investmentStatus').value,
+                sales_amount: document.getElementById('salesAmount').value,
+                employee_count: document.getElementById('employeeCount').value,
+                
+                // 💡 이번에 새로 양성화된 7가지 심층 필드 추가 전송!
+                youth_founder_condition_status: document.getElementById('youthFounder').value,
+                technology_transfer_status: document.getElementById('techTransfer').value,
+                certification_or_test_need: document.getElementById('certTestNeed').value,
+                sales_record_status: document.getElementById('salesRecordStatus').value,
+                export_intent: document.getElementById('exportIntent').value,
+                target_country_or_market: document.getElementById('targetCountry').value,
+                green_bio_or_smart_agri_flag: document.getElementById('greenAgriFlag').value,
+                
+                // 💡 [신규 스키마] 화면에서 검증/수정된 3가지 신규 필드 Payload 탑재 완료
+                has_own_factory: document.getElementById('hasOwnFactory').value,
+                government_awards_certificates: document.getElementById('govAwardsCertificates').value,
+                geographic_advantage: document.getElementById('geographicAdvantage').value,
+                
+                // 💡 [데이터 단절 해결] 화면에 없는 고도화 정량/구조화 데이터(Integer, ENUM)를 Payload에 강제 병합하여 서버로 전송!
+                total_investment_amount: state.hiddenAiData?.total_investment_amount || 0,
+                annual_revenue: state.hiddenAiData?.annual_revenue || 0,
+                value_chain_tag: state.hiddenAiData?.value_chain_tag || "",
+                agrifood_value_chain: state.hiddenAiData?.agrifood_value_chain || "",
+                has_overseas_partner_or_loi: state.hiddenAiData?.has_overseas_partner_or_loi || "no",
+                green_bio_or_smart_agri: state.hiddenAiData?.green_bio_or_smart_agri || null
+            },
+            statuses: {}
+        };
+
+        const { data: saveData } = await fetchJson("/api/save", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(payload) });
+        state.activeCaseId = saveData?.case_id || state.activeCaseId;
+        if (!state.activeCaseId) {
+            throw new Error("저장된 case_id가 없어 gemma-match/run을 시작할 수 없습니다.");
+        }
+
+        // 2. AI 브리핑 백그라운드 진짜 실행 명령 (잘려나갔던 /run/ 꼬리 완벽 복구)
+        const runRes = await fetch(`/api/gemma-match/run/${encodeURIComponent(state.activeCaseId)}`, { method: "POST" });
+        if (!runRes.ok) {
+            console.error("=== [DEBUG] 서버 응답 에러 ===", await runRes.text());
+            throw new Error(`AI 실행 명령이 거절되었습니다. (상태 코드: ${runRes.status})`);
+        }
+
+        // 3. 폴링(Polling) - AI가 리포트를 다 쓸 때까지 3초마다 문 두드리기
+        let matchResult = null;
+        const MAX_RETRIES = 40;
+        let retries = 0;
+        while (retries < MAX_RETRIES) {
+            retries++;
+            await new Promise(resolve => setTimeout(resolve, 3000)); // 3초 대기
+            
+            const pollUrl = `/api/gemma-match-result/${encodeURIComponent(state.activeCaseId)}`;
+            const pollRes = await fetch(pollUrl);
+            
+            if (pollRes.ok) {
+                const data = await pollRes.json();
+                console.log("=== [DEBUG] AI 브리핑 최종 결과 원본 ===", data);
+                
+                // 데이터 껍데기 유연하게 벗기기 (result 래퍼 유무 동시 대응)
+                const rawResult = data.result || data || {};
+                const recs = [];
+
+                // 1. 신규 스키마 (recommended, conditional) 지원
+                if (Array.isArray(rawResult.recommended)) {
+                    rawResult.recommended.forEach(p => { p.is_primary = true; recs.push(p); });
+                }
+                if (Array.isArray(rawResult.conditional)) {
+                    rawResult.conditional.forEach(p => { p.is_primary = false; recs.push(p); });
+                }
+
+                // 2. 구버전 스키마 (recommendations, programs) 폴백 지원
+                if (recs.length === 0) {
+                    const fallback = rawResult.recommendations || rawResult.programs || [];
+                    fallback.forEach(p => { p.is_primary = p.is_primary ?? true; recs.push(p); });
+                }
+
+                // 정보 부족 감지
+                const resultState = data.result_state || rawResult.result_state || "";
+                if (resultState === "NEEDS_INPUT") {
+                    alert("⚠️ AI 분석 결과: 기업 정보가 너무 적어 맞춤형 지원사업을 찾을 수 없습니다.");
+                    matchResult = { programs: [] };
+                    break;
+                }
+
+                // UI 배너 거짓말 방지 (0개일 때 안내 텍스트 변경)
+                const bannerTitle = document.querySelector('.text-headline-md');
+                const bannerDesc = document.querySelector('.text-inverse-primary');
+                if (recs.length === 0) {
+                    alert("✅ AI 분석이 완료되었으나, 현재 기업 조건과 일치하는 추천 사업을 찾지 못했습니다.");
+                    if(bannerTitle) bannerTitle.textContent = "조건에 일치하는 추천 사업이 없습니다.";
+                    if(bannerDesc) bannerDesc.textContent = "입력하신 정보를 바탕으로 검색했으나, 서버의 지원사업 목록 중 추천할 만한 사업을 찾지 못했습니다. 키워드를 수정하여 다시 시도해 보세요.";
+                } else {
+                    if(bannerTitle) bannerTitle.textContent = "조건을 확인한 뒤 검토할 후보가 있습니다.";
+                    if(bannerDesc) bannerDesc.textContent = "신청 전 기업 상태와 자격 조건을 확인하면 판단이 더 명확해집니다. 상담 시 우측의 필요 조건을 중점적으로 체크해주세요.";
+                }
+
+                // 텍스트 추출 헬퍼 함수
+                const extractText = (obj) => {
+                    if (!obj) return "";
+                    if (typeof obj === "string") return obj;
+                    return obj.value || obj.text || "";
+                };
+                const extractList = (obj) => {
+                    if (!obj) return [];
+                    if (Array.isArray(obj)) return obj.map(extractText).filter(Boolean);
+                    if (Array.isArray(obj.value)) return obj.value.map(extractText).filter(Boolean);
+                    if (Array.isArray(obj.items)) return obj.items.map(extractText).filter(Boolean);
+                    return [];
+                };
+
+                // 바뀐 데이터 이름표(Key) 완벽 매핑
+                matchResult = {
+                    programs: recs.map(p => {
+                        const title = extractText(p.program_name) || extractText(p.program_title) || "지원사업명 없음";
+                        
+                        let condArray = [];
+                        if (p.required_checks && Array.isArray(p.required_checks)) {
+                            condArray = extractList(p.required_checks);
+                        } else if (p.eligibility_conditions_to_check) {
+                            condArray = extractList(p.eligibility_conditions_to_check);
+                        } else if (p.confirmation_needed_items) {
+                            condArray = extractList(p.confirmation_needed_items); 
+                        }
+
+                        // 💡 [1번 문제 해결] 신규 Gemma4 스키마 advanced 구조체 매핑 완료 (UI 누수 제거)
+                        const advReason = p.match_reason_advanced || {};
+                        const selectionJustification = advReason.selection_justification || extractText(p.short_reason) || extractText(p.match_reason) || "선정 타당성 분석 중입니다.";
+                        const proposalEnhancement = advReason.proposal_enhancement_advice || "사업계획서 보완을 위한 정성 조언을 수집 중입니다.";
+
+                        return {
+                            title: title,
+                            badge: p.is_primary ? "강력 추천" : "검토 대상",
+                            short_reason: extractText(p.short_reason) || "매칭 요약 정보가 없습니다.",
+                            reason: selectionJustification, // 🎯 UI의 1번 레이블에 매핑
+                            match_reason: proposalEnhancement, // 🎯 UI의 2번 레이블에 매핑
+                            why_it_matches: extractList(p.why_it_matches),
+                            conditions: condArray.length > 0 ? condArray : ["공고문 확인 필요"],
+                            primary: p.is_primary || false,
+                            fit_status: p.fit_status || "적합",
+                            caution_flags: Array.isArray(p.caution_flags) ? p.caution_flags : []
+                        };
+                    })
+                };
+                break; // 리포트 완성 확인! 무한 루프 탈출
+            } else if (pollRes.status !== 404) {
+                throw new Error(`AI 분석 중 서버 에러가 발생했습니다. (상태 코드: ${pollRes.status})`);
+            }
+        }
+
+        if (!matchResult) {
+            throw new Error("AI 분석 시간 초과 (2분)");
+        }
+
+        clearInterval(timerInterval);
+
+        // 5. 화면 전환 및 멋진 Stitch 카드 생성
+        renderStitchCards(matchResult.programs);
+        document.getElementById('resultTitle').textContent = `${document.getElementById('companyName').value || "해당 기업"} 기준 지원사업 브리핑`;
+        document.getElementById('resultSummary').textContent = document.getElementById('techSummary').value || "입력된 기업 정보가 요약되어 표시됩니다.";
+        document.getElementById('candidateCount').textContent = matchResult.programs.length;
+
+        screen1.classList.add('hidden');
+        resultDivider.classList.remove('hidden');
+        screen2.classList.remove('hidden');
+        setTimeout(() => { screen2.classList.remove('opacity-0'); screen2.classList.add('opacity-100'); screen2.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+
+    } catch (err) {
+        clearInterval(timerInterval);
+        console.error("=== [DEBUG] 브리핑 에러 ===", err);
+        alert("❌ 브리핑 생성 중 에러가 발생했습니다.\n" + err.message);
+    } finally {
+        state.running = false;
+        btnGenerateText.textContent = "지원사업 브리핑 생성";
+        btnGenerateIcon.className = "material-symbols-outlined text-[24px]"; 
+        btnGenerateIcon.textContent = "arrow_forward";
+        btnGenerateBriefing.classList.remove('opacity-80', 'cursor-not-allowed');
+    }
+}
+
+// 💡 [2번 문제 해결] 과거 브리핑 기록을 즉시 다시 볼 수 있는 영구 로드 파이프라인 엔진 구현
+async function loadSavedBriefingHistory(targetCaseId) {
+    if (!targetCaseId) return alert("올바른 Case ID를 입력해 주세요.");
+    
+    try {
+        btnGenerateText.textContent = "과거 브리핑 데이터 로드 중...";
+        const response = await fetch(`/api/gemma-match-result/${encodeURIComponent(targetCaseId)}`);
+        
+        if (!response.ok) {
+            throw new Error("해당 Case ID의 캐시 장부 파일이 서버에 존재하지 않습니다.");
+        }
+        
+        const data = await response.json();
+        const rawResult = data.result || data || {};
+        const recs = [];
+
+        if (Array.isArray(rawResult.recommendations)) {
+            rawResult.recommendations.forEach(p => recs.push(p));
+        }
+
+        if (recs.length === 0) {
+            return alert("해당 케이스에 보존된 매칭 추천 리포트 카드가 없습니다.");
+        }
+
+        const extractText = (obj) => obj ? (typeof obj === "string" ? obj : obj.value || obj.text || "") : "";
+        const extractList = (obj) => obj ? (Array.isArray(obj) ? obj.map(extractText) : (Array.isArray(obj.value) ? obj.value.map(extractText) : [])) : [];
+
+        const matchResult = {
+            programs: recs.map((p, idx) => {
+                const advReason = p.match_reason_advanced || {};
+                return {
+                    title: extractText(p.program_name) || "지원사업명 없음",
+                    badge: idx === 0 ? "강력 추천" : "검토 대상",
+                    short_reason: extractText(p.short_reason) || "매칭 요약 정보가 없습니다.",
+                    reason: advReason.selection_justification || extractText(p.reason) || "선정 타당성이 없습니다.",
+                    match_reason: advReason.proposal_enhancement_advice || "보완 조언이 없습니다.",
+                    why_it_matches: extractList(p.why_it_matches),
+                    conditions: extractList(p.confirmation_needed_items).length > 0 ? extractList(p.confirmation_needed_items) : ["공고문 확인 필요"],
+                    primary: idx === 0,
+                    fit_status: p.fit_status || "적합",
+                    caution_flags: Array.isArray(p.caution_flags) ? p.caution_flags : []
+                };
+            })
+        };
+
+        state.activeCaseId = targetCaseId;
+        renderStitchCards(matchResult.programs);
+        
+        document.getElementById('resultTitle').textContent = `${targetCaseId} 과거 분석 브리핑`;
+        document.getElementById('candidateCount').textContent = matchResult.programs.length;
+
+        screen1.classList.add('hidden');
+        resultDivider.classList.remove('hidden');
+        screen2.classList.remove('hidden');
+        screen2.classList.remove('opacity-0');
+        screen2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+    } catch (err) {
+        alert("기록 불러오기 실패: " + err.message);
+    } finally {
+        btnGenerateText.textContent = "지원사업 브리핑 생성";
+    }
+}
+
+// Stitch 완벽 디자인 적용 카드 렌더링 함수
+function renderStitchCards(programs) {
+    cardsContainer.innerHTML = '';
+    programs.forEach((prog, index) => {
+        const isPrimary = prog.primary || index === 0;
+        const isConditional = prog.fit_status === "조건부 매칭";
+        
+        let badgeHtml = '';
+        if (isConditional) {
+            badgeHtml = `<span class="px-3 py-1.5 bg-[#fef3c7] text-[#92400e] border border-[#fde68a] rounded-md text-label-caps font-bold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">warning</span>조건부 매칭 (서류 보완 필요)</span>`;
+        } else if (isPrimary) {
+            badgeHtml = `<span class="px-3 py-1.5 bg-[#dcfce7] text-[#166534] border border-[#bbf7d0] rounded-md text-label-caps font-bold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">check_circle</span>최우선 추천 (지원 가능)</span>`;
+        } else {
+            badgeHtml = `<span class="px-2.5 py-1 bg-surface-container-high text-on-surface rounded text-label-caps font-bold">${prog.badge}</span>`;
+        }
+
+        let actionBoxHtml = '';
+        if (isConditional && prog.caution_flags && prog.caution_flags.length > 0) {
+            actionBoxHtml = `
+                <div class="bg-[#fff7ed] border-l-4 border-[#ea580c] p-4 rounded-r-xl mb-4">
+                    <div class="flex items-start gap-2">
+                        <span class="material-symbols-outlined text-[#ea580c] text-[20px] shrink-0 mt-0.5">campaign</span>
+                        <div>
+                            <h5 class="text-label-large font-bold text-[#9a3412] mb-1">💡 지원을 위한 추가 액션 필요</h5>
+                            <p class="text-body-sm text-[#c2410c] leading-snug">기업의 기술/업력 요건은 완벽히 일치합니다! 단, 지원을 위해 <strong>[${prog.caution_flags.join(', ')}]</strong> 확보가 필수적입니다.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        const conditionsHtml = prog.conditions.map(cond => `
+            <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-[#d97706] text-[20px] shrink-0 mt-0.5">check_box_outline_blank</span>
+                <span class="text-body-md font-medium text-[#78350f] leading-snug">${cond}</span>
+            </li>
+        `).join('');
+
+        const bulletPoints = (prog.why_it_matches || [])
+            .map(point => `<li class="list-disc ml-5 mb-1 text-on-surface-variant">${point}</li>`)
+            .join('');
+
+        if (isPrimary) {
+            cardsContainer.insertAdjacentHTML('beforeend', `
+                <div class="md:col-span-2 bg-surface rounded-3xl border-2 ${isConditional ? 'border-[#f59e0b]' : 'border-primary'} overflow-hidden premium-shadow flex flex-col hover:-translate-y-1 transition-all duration-300">
+                    <div class="h-2 ${isConditional ? 'bg-[#f59e0b]' : 'bg-primary'} w-full"></div>
+                    <div class="p-lg flex-1 flex flex-col md:flex-row gap-6">
+                        <div class="flex-1 flex flex-col gap-4">
+                            <div>
+                                <div class="flex justify-between items-center mb-3">
+                                    ${badgeHtml}
+                                </div>
+                                <h4 class="text-headline-md font-bold text-on-surface leading-snug mb-2">${prog.title}</h4>
+                            </div>
+                            ${actionBoxHtml}
+                            <div class="${actionBoxHtml ? 'mt-0' : 'mt-2'}">
+                                <h5 class="text-label-caps text-on-surface-variant flex items-center gap-1 mb-2">
+                                    <span class="material-symbols-outlined text-[16px]">psychology</span> 검토 요약 사유
+                                </h5>
+                                <p class="text-body-md text-primary font-bold leading-relaxed">" ${prog.short_reason} "</p>
+                            </div>
+                        </div>
+                        <div class="flex-1 flex flex-col">
+                            <div class="bg-[#fffbeb] p-5 rounded-xl border border-[#fde68a] h-full flex flex-col justify-center">
+                                <h5 class="text-title-sm font-bold text-[#92400e] flex items-center gap-2 mb-3">
+                                    <span class="material-symbols-outlined text-[20px]">rule</span> 상담 전 확인할 조건
+                                </h5>
+                                <ul class="space-y-3 ml-1 list-none">${conditionsHtml}</ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="stitch-detail-panel-${index}" class="hidden border-t border-outline-variant pt-4 px-8 pb-5 bg-surface-bright flex flex-col gap-4 transition-all">
+                        <div class="border-b border-outline-variant pb-2">
+                            <h6 class="text-label-large font-bold text-primary flex items-center gap-1 mb-1">
+                                <span class="material-symbols-outlined text-[16px]">stars</span> 🎯 AI 선정 타당성 (Selection Justification)
+                            </h6>
+                            <p class="text-body-sm text-on-surface-variant pl-6 leading-relaxed">${prog.reason}</p>
+                        </div>
+                        <div class="border-b border-outline-variant pb-2">
+                            <h6 class="text-label-large font-bold text-primary flex items-center gap-1 mb-1">
+                                <span class="material-symbols-outlined text-[16px]">build</span> 🛠️ 사업계획서 보완 조언 (Proposal Enhancement)
+                            </h6>
+                            <p class="text-body-sm text-on-surface-variant pl-6 leading-relaxed">${prog.match_reason}</p>
+                        </div>
+                        ${bulletPoints ? `
+                        <div>
+                            <h6 class="text-label-large font-bold text-primary flex items-center gap-1 mb-1">
+                                <span class="material-symbols-outlined text-[16px]">task_alt</span> 3. 핵심 매칭 데이터 포인트 근거
+                            </h6>
+                            <ul class="pl-6 text-body-sm space-y-1">${bulletPoints}</ul>
+                        </div>` : ''}
+                    </div>
+
+                    <div class="px-lg py-4 bg-surface-container-low border-t border-outline-variant flex justify-between items-center">
+                        <p class="text-label-caps text-outline flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px]">psychology</span> AI 심층 정밀 매칭 분석서 동기화 완료
+                        </p>
+                        <button onclick="toggleStitchDetailPanel(${index}, this)" class="bg-primary text-on-primary text-body-md font-bold px-6 py-2.5 rounded-lg flex items-center gap-2 hover:bg-primary-container transition-colors shadow-sm">
+                            <span>상세 사유 보기</span> <span class="material-symbols-outlined text-[20px] transition-transform duration-200">expand_more</span>
+                        </button>
+                    </div>
+                </div>
+            `);
+        } else {
+            cardsContainer.insertAdjacentHTML('beforeend', `
+                <div class="bg-surface rounded-2xl border ${isConditional ? 'border-[#fcd34d]' : 'border-outline-variant'} overflow-hidden card-depth flex flex-col hover:border-primary transition-all duration-300">
+                    <div class="h-1.5 ${isConditional ? 'bg-[#fbbf24]' : 'bg-primary-fixed-dim'} w-full"></div>
+                    <div class="p-md flex-1 flex flex-col gap-4">
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                ${badgeHtml}
+                            </div>
+                            <h4 class="text-title-sm font-bold text-on-surface line-clamp-2 leading-snug">${prog.title}</h4>
+                        </div>
+                        ${actionBoxHtml}
+                        <div>
+                            <h5 class="text-label-caps text-on-surface-variant flex items-center gap-1 mb-1">
+                                <span class="material-symbols-outlined text-[14px]">psychology</span> 검토 요약 사유
+                            </h5>
+                            <p class="text-body-sm text-primary font-bold">" ${prog.short_reason} "</p>
+                        </div>
+                        <div class="bg-[#fffbeb] p-4 rounded-xl border border-[#fde68a] mb-auto mt-2">
+                            <h5 class="text-label-caps text-[#92400e] font-bold flex items-center gap-1 mb-2">
+                                <span class="material-symbols-outlined text-[16px]">rule</span> 상담 전 확인할 조건
+                            </h5>
+                            <ul class="text-body-sm space-y-2 ml-1">${conditionsHtml.replace(/text-\[20px\]/g, 'text-[16px]')}</ul>
+                        </div>
+                    </div>
+
+                    <div id="stitch-detail-panel-${index}" class="hidden border-t border-outline-variant pt-3 px-6 pb-4 bg-surface-bright flex flex-col gap-3 transition-all">
+                        <div class="border-b border-outline-variant pb-2">
+                            <h6 class="text-label-caps text-primary font-bold flex items-center gap-1 mb-0.5">
+                                🎯 AI 선정 타당성 (Selection Justification)
+                            </h6>
+                            <p class="text-[13px] text-on-surface-variant pl-2">${prog.reason}</p>
+                        </div>
+                        <div class="border-b border-outline-variant pb-2">
+                            <h6 class="text-label-caps text-primary font-bold flex items-center gap-1 mb-0.5">
+                                🛠️ 사업계획서 보완 조언 (Proposal Enhancement)
+                            </h6>
+                            <p class="text-[13px] text-on-surface-variant pl-2">${prog.match_reason}</p>
+                        </div>
+                        ${bulletPoints ? `
+                        <div>
+                            <h6 class="text-label-caps text-primary font-bold flex items-center gap-1 mb-0.5">
+                                3. 매칭 포인트 근거
+                            </h6>
+                            <ul class="pl-2 text-[13px] space-y-0.5">${bulletPoints}</ul>
+                        </div>` : ''}
+                    </div>
+
+                    <div class="px-md py-3 bg-surface-container-low border-t border-outline-variant flex justify-between items-center">
+                        <span class="text-[11px] text-outline">※ AI 심층 분석 완료</span>
+                        <button onclick="toggleStitchDetailPanel(${index}, this)" class="text-primary text-body-sm font-bold flex items-center gap-1 hover:text-primary-container transition-colors">
+                            <span>상세 사유 보기</span> <span class="material-symbols-outlined text-[18px] transition-transform duration-200">expand_more</span>
+                        </button>
+                    </div>
+                </div>
+            `);
+        }
+    });
+}
+
+// 💡 상세 패널 제어용 글로벌 토글 헬퍼 함수 추가
+window.toggleStitchDetailPanel = function(index, btn) {
+    const panel = document.getElementById(`stitch-detail-panel-${index}`);
+    const icon = btn.querySelector('.material-symbols-outlined');
+    const textSpan = btn.querySelector('span');
+    
+    if (panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+        textSpan.innerText = '상세 사유 닫기';
+        icon.style.transform = 'rotate(180deg)';
+    } else {
+        panel.classList.add('hidden');
+        textSpan.innerText = '상세 사유 보기';
+        icon.style.transform = 'rotate(0deg)';
+    }
+};
+
+// Event Listeners
+pdfInput.addEventListener('change', () => {
+    state.activeCaseId = null; // 🚨 핵심: 새 파일 선택 시 이전 기업의 명찰(case_id)을 강제로 찢어버림
+    syncSelectedFilename();
+});
+pdfDropZone.addEventListener('dragover', (e) => { e.preventDefault(); pdfDropZone.classList.add('border-primary', 'bg-surface-bright'); });
+pdfDropZone.addEventListener('dragleave', (e) => { e.preventDefault(); pdfDropZone.classList.remove('border-primary', 'bg-surface-bright'); });
+pdfDropZone.addEventListener('drop', (e) => {
+    e.preventDefault(); pdfDropZone.classList.remove('border-primary', 'bg-surface-bright');
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) { 
+        state.activeCaseId = null; // 🚨 핵심: 새 파일 드롭 시 이전 기업의 명찰(case_id)을 강제로 찢어버림
+        pdfInput.files = e.dataTransfer.files; 
+        syncSelectedFilename(); 
+    }
+});
+
+btnRunExtraction.addEventListener('click', processPdf);
+btnGenerateBriefing.addEventListener('click', generateBriefing);
+
+const resetToInputScreen = () => {
+    screen2.classList.add('opacity-0');
+    setTimeout(() => {
+        screen2.classList.add('hidden'); resultDivider.classList.add('hidden'); screen1.classList.remove('hidden'); screen1.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+};
+
+document.getElementById('btnEdit').addEventListener('click', resetToInputScreen);
+const resetAll = () => {
+    if (window.timerInterval) clearInterval(window.timerInterval); // 🚨 화면 뒤의 좀비 타이머 즉각 처형
+    state.activeCaseId = null; pdfInput.value = "";
+    document.querySelectorAll('input[type="text"], textarea').forEach(el => el.value = '');
+    syncSelectedFilename(); resetToInputScreen();
+};
+
+document.getElementById('btnRestart').addEventListener('click', resetAll);
+document.getElementById('btnNewBriefing').addEventListener('click', resetAll);
+
+// 💡 상단 헤더 내비게이션 바에 과거기록 다시보기 검색 창 바인딩 단추 동적 결합
+document.addEventListener("DOMContentLoaded", () => {
+    const actionContainer = document.querySelector('header .flex.items-center.gap-md');
+    if (actionContainer) {
+        const historyLayout = `
+            <div class="flex items-center gap-2 mr-2">
+                <input type="text" id="txtHistoryCaseId" placeholder="과거 Case ID 입력 (예: upload_...)" class="bg-background border border-outline-variant rounded-lg px-3 py-1.5 text-xs text-on-surface focus:border-primary outline-none" />
+                <button onclick="loadSavedBriefingHistory(document.getElementById('txtHistoryCaseId').value.trim())" class="bg-surface border border-outline text-primary font-bold rounded-lg py-1.5 px-3 text-xs hover:bg-primary-fixed-dim transition-colors flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs">history</span> 기록 로드
+                </button>
+            </div>
+        `;
+        actionContainer.insertAdjacentHTML('afterbegin', historyLayout);
+    }
+});
+</script>
+</body>
+</html>

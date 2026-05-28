@@ -1,0 +1,20 @@
+{
+  "name": "gov-support-matcher",
+  "version": "1.0.0",
+  "description": "농식품 및 스마트농업 기업용 AI 지원사업 하이브리드 매칭 시스템",
+  "main": "server.js",
+  "bin": "server.js",
+  "pkg": {
+    "assets": [
+      "gemma4_final_pure_master_db.json",
+      "demo_v2.html"
+    ],
+    "targets": [
+      "node18.16.0-win-x64"
+    ]
+  },
+  "scripts": {
+    "build": "pkg . --output dist/app.exe"
+  },
+  "dependencies": {}
+}
