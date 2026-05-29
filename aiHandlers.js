@@ -86,79 +86,62 @@ function buildEmptyAutofillDraft(caseId, sourcePath, extractionManifestPath, now
   };
 }
 
-// 핵심 1: Gemma AI 데이터 추출 엔진
+// 핵심 1: Gemma AI 데이터 추출 엔진 (공백 출력 방어 가드 시스템 탑재)
 async function generateAutofillDraftWithAI(text, caseId, sourcePath, extractionManifestPath, now) {
   const draft = buildEmptyAutofillDraft(caseId, sourcePath, extractionManifestPath, now);
   
   try {
-    console.log(`\n🚀 [Speed Optimize] '${caseId}' 정밀 추출 중... (RAG 기반 하이브리드 최적화)`);
+    console.log(`\n🚀 [Speed Optimize] '${caseId}' 정밀 추출 프로세스 가동...`);
     
-    const keywords = [
-        "회사", "기업", "주식회사", "법인", "대표", "대표자", "CEO", "소재지", "주소", "설립", "창업", 
-        "업종", "분야", "산업", "생산품", "서비스", "기술", "아이템", "제품", "단계", "상용화",
-        "매출", "고용", "직원", "근로자", "인원", "수출", "인증", "벤처", "이노비즈", "메인비즈", "투자", "유치",
-        "사업비", "자금", "지원", "국고", "비용", "애로사항", "필요성", "배경", "니즈", "추진", "전략", "목표", "시장", "계획", "마케팅", "부스", "전시", "확산",
-        "MOU", "LoI", "업무협약", "계약서", "의향서", "파트너", "온실", "공장", "가공", "제조", "농장", "재배", "스마트팜", "푸드", "바이오",
-        "청년", "나이", "기술이전", "실증", "검증", "해외", "글로벌"
-    ];
-    let condensedText = "";
-    const lines = String(text || "").split(/\r?\n/);
+    // 🎯 [신규 아키텍처] 진짜 문단(Block) 단위 문맥 보존형 스마트 RAG (임시방편 완전 제거)
+    const rawText = String(text || "");
+    const blocks = rawText.split(/\n\s*\n/); 
     
-    for (let i = 0; i < lines.length; i++) {
-        if (keywords.some(kw => lines[i].includes(kw))) {
-            const prev = lines[i-1] ? lines[i-1].trim() : "";
-            const curr = lines[i].trim();
-            const next = lines[i+1] ? lines[i+1].trim() : "";
-            condensedText += `${prev}\n${curr}\n${next}\n---\n`;
+    const keywords = ["매출", "투자", "고용", "설립", "대표", "단계", "지원", "자금", "시장", "기술", "제품", "TRL", "자부담", "국고", "수출", "인증", "특허", "수상", "공장", "농업", "스마트", "생육", "방제", "드론", "AI"]; 
+    
+    let filteredBlocks = [];
+    let currentLength = 0;
+    const MAX_ALLOWED_CHARS = 4000; // 🎯 뇌 용량(num_ctx) 초과로 인한 템플릿 잘림 현상을 막기 위해 4000자로 최적화
+
+    for (const block of blocks) {
+        if (keywords.some(kw => block.includes(kw))) {
+            const trimmedBlock = block.trim();
+            if (currentLength + trimmedBlock.length + 2 <= MAX_ALLOWED_CHARS) {
+                filteredBlocks.push(trimmedBlock);
+                currentLength += trimmedBlock.length + 2;
+            } else {
+                console.log(`⚠️ 컨텍스트 제어로 인해 이후 일부 블록은 제외되었습니다. 포함된 온전한 블록 수: ${filteredBlocks.length}`);
+                break;
+            }
         }
     }
-    condensedText = condensedText.slice(0, 1500).trim();
+    
+    let condensedText = filteredBlocks.join("\n\n");
 
-    const finalPrompt = `당신은 최고 수준의 벤처캐피탈(VC) 및 데이터 엔지니어입니다. 
-아래 [압축된 문서]를 정밀 분석하여, 백엔드 연산에 최적화된 엄격한 JSON 포맷으로 데이터를 누락 없이 추출하세요.
+    if (!condensedText || condensedText.trim().length < 100) {
+        console.log("⚠️ 스마트 RAG 압축 결과가 부족하여 원본 문서의 구조를 그대로 유지하여 전송합니다.");
+        condensedText = rawText.length > MAX_ALLOWED_CHARS ? rawText.slice(0, MAX_ALLOWED_CHARS) : rawText;
+    }
 
-[🚨 데이터 구조화 절대 규칙]
-1. 정량 데이터의 Integer 변환 (완벽 고정): 매출액(annual_revenue)과 누적 투자금(total_investment_amount)은 어떠한 텍스트도 포함하지 말고 오직 '원' 단위의 순수 숫자(Integer)로 계산하여 기입하세요. (예: "21억" -> 2100000000, "15억" -> 1500000000, "40억" -> 4000000000). 매출액 원본 문자열은 sales_amount 필드에 기재하세요.
-2. 가치사슬 ENUM 태깅: 기업의 기술 작동 현장이 1차 생산(농장/재배)이면 "1_Production", 2차 가공(푸드테크/식품공장)이면 "2_Processing", 3차 유통/소비면 "3_Distribution", 모르면 "9_Unknown" 중 무조건 하나의 문자열만 출력하세요. agrifood_value_chain 필드에도 한글로 추출내용을 적어주세요.
-3. Boolean 및 Confidence 제어: green_bio_or_smart_agri 항목은 "maybe" 같은 애매한 문자열이 아닌, 반드시 객체 { "is_matched": boolean, "confidence_score": float(0.0~1.0), "justification": "문자열" } 형태로 반환하세요.
-4. 모든 필드 복구 필수: 누락된 필드가 없도록 아래 제시된 [출력 포맷 (JSON)]의 모든 키값을 채우십시오. 데이터가 없으면 빈 문자열("") 혹은 0으로 알맞게 채워야 합니다.
+    try {
+        const inputDebugPath = require("path").join(require("path").dirname(extractionManifestPath), "raw_gemma_input_debug_v2.txt");
+        require("fs").writeFileSync(inputDebugPath, condensedText, "utf8");
+    } catch (err) {}
 
-[추출 대상 필드 정의]
-- company_name_or_alias: 회사명
-- region: 소재지 주소 (예: "경기도 성남시")
-- industry_field: 산업 분야 요약
-- product_tech_summary: 상용화 대상 및 기술 요약 (1~2문장)
-- current_stage: 현재 성장 단계 (예: "상용화 및 양산 단계")
-- applicant_type: 신청 주체 유형 (예: "중소기업", "스타트업")
-- venture_confirmation_status: 벤처기업 인증 여부 ("yes" 또는 "no")
-- investment_status: 정성적 투자 유치 현황 (예: "시리즈 A 단계 투자 유치 완료")
-- establishment_date: 설립년월일 (YYYY-MM-DD 형식 고수)
-- sales_amount: 매출액 원본 텍스트 (예: "2,100백만 원" 또는 "21억 원")
-- employee_count: 고용 인원 숫자 ("명" 제외 오직 Integer 숫자만)
-- sme_status: 중소기업 여부 ("중소기업" 또는 "해당")
-- top_needs_or_pain_points: 기업이 현재 가장 필요로 하는 지원 요약
-- agrifood_value_chain: 가치사슬 단계 명칭 ("1차 생산", "2차 가공", "3차 유통/소비" 중 하나)
-- has_overseas_partner_or_loi: 해외 파트너/MOU/LoI 증빙이 확인되면 "yes", 단순 목표치뿐이거나 없으면 "no"
-- youth_founder_condition_status: 대표자 청년 요건 해당 여부 ("yes" 또는 "no")
-- technology_transfer_status: 기술이전 여부 ("completed", "in_progress", "not_applicable")
-- certification_or_test_need: 인증/테스트 필요성 요약
-- sales_record_status: 매출 실적 유무 요약 
-- export_intent: 해외 진출 의지 및 목표 단계 ("active", "planned", "none")
-- target_country_or_market: 타겟 국가 또는 시장명
-- green_bio_or_smart_agri_flag: 그린바이오/스마트농업 연관성 문자열 요약 ("yes", "maybe", "no")
-- total_investment_amount: [절대규칙 1] 누적 투자유치 금액 (Integer, 원 단위 숫자)
-- annual_revenue: [절대규칙 1] 연 매출액 (Integer, 원 단위 숫자)
-- value_chain_tag: [절대규칙 2] 가치사슬 기계어 ENUM 코드
-- green_bio_or_smart_agri: [절대규칙 3] 불리언 및 확신도 검증 객체
-- has_own_factory: 자체 제조 인프라(공장) 보유 여부 ("yes" 또는 "no")
-- government_awards_certificates: 정부/기관 주관 수상 및 인증 이력 (문자열)
-- geographic_advantage: 지리적 가점 위치 또는 특정 클러스터 소재지 (문자열)
+    // 🎯 [완전체 아키텍처] 4096 넉넉한 문맥을 활용한 '강제 빈칸 채우기(Fill-in-the-blank) 템플릿' 정방향 배치
+    const finalPrompt = `당신은 최고 수준의 데이터 정제 AI입니다.
+아래 첨부된 [제공된 문서]를 정밀 분석한 후, 반드시 맨 아래의 [JSON 템플릿]을 단 한 줄도 빠짐없이 100% 똑같이 복사하여 빈칸(값)만 채워 넣으세요.
 
-[압축된 문서]
+[🚨 절대 준수 사항 - 위반 시 시스템 붕괴]
+1. 템플릿 완벽 복사: 아래 30개가 넘는 Key(변수명) 중 하나라도 지우거나, 임의로 새로운 Key(예: total_funding_amount)를 만들어내면 시스템이 파괴됩니다.
+2. 정량 데이터: 매출액(annual_revenue), 투자금(total_investment_amount), 직원수(employee_count)는 한글이나 단위 없이 오직 원 단위의 순수 숫자(예: 1800000000, 0)로만 적으세요.
+3. 빈칸 유지: 문서에서 찾을 수 없는 정보는 억지로 지어내지 말고 반드시 "" (빈 문자열) 또는 0 으로 그대로 두세요.
+
+[제공된 문서]
 ${condensedText}
 
-[출력 포맷 (JSON)]
-반드시 아래 구조의 순수한 JSON 포맷으로만 응답해야 하며, 텍스트 값 내부에 큰따옴표(")를 중복 사용하지 마세요.
+[JSON 템플릿]
+(반드시 아래 구조를 그대로 복사해서 빈칸을 채운 순수 JSON만 응답하세요. 마크다운 기호는 쓰지 마세요)
 {
   "company_name_or_alias": "",
   "region": "",
@@ -166,47 +149,50 @@ ${condensedText}
   "product_tech_summary": "",
   "current_stage": "",
   "applicant_type": "",
+  "business_registration_status": "",
+  "establishment_date": "",
+  "business_age_category": "",
+  "sme_status": "",
+  "government_support_restriction_status": "",
+  "duplicate_support_risk_status": "",
   "venture_confirmation_status": "",
   "investment_status": "",
-  "establishment_date": "",
-  "sales_amount": "",
-  "employee_count": 0,
-  "sme_status": "",
-  "top_needs_or_pain_points": "",
-  "agrifood_value_chain": "",
-  "has_overseas_partner_or_loi": "",
-  "youth_founder_condition_status": "",
+  "self_funding_or_cost_share_status": "",
   "technology_transfer_status": "",
   "certification_or_test_need": "",
   "sales_record_status": "",
   "export_intent": "",
   "target_country_or_market": "",
-  "green_bio_or_smart_agri_flag": "",
+  "youth_founder_condition_status": "",
+  "representative_age_condition_status": "",
+  "additional_matching_notes": "",
   "total_investment_amount": 0,
   "annual_revenue": 0,
+  "employee_count": 0,
   "value_chain_tag": "",
+  "agrifood_value_chain": "",
+  "has_overseas_partner_or_loi": "",
   "has_own_factory": "",
   "government_awards_certificates": "",
   "geographic_advantage": "",
+  "green_bio_or_smart_agri_flag": "",
   "green_bio_or_smart_agri": {
     "is_matched": false,
     "confidence_score": 0.0,
     "justification": ""
   }
-}
-규칙을 준수하여 온전한 JSON으로만 응답하세요.`;
+위 규칙과 구조를 철저하게 엄수하여 완벽한 JSON 포맷으로만 최종 응답하십시오.`;
 
     const reqData = JSON.stringify({
       model: "gemma4",
       prompt: finalPrompt,
       stream: false,
       format: "json",
-      // 💡 초과열 상태인 4코어 8GB VM 환경을 위한 리스크 방어형 스펙 다운사이징
       options: { 
         temperature: 0.1, 
         seed: 42,
-        num_thread: 3,   // 🎯 4에서 3으로 하향: 시스템 안정성 확보 및 다른 프로세스 먹통 방지
-        num_ctx: 3072    // 🎯 4096에서 3072로 완화: 텍스트 유실을 최소화하면서 RAM 점유율을 80% 이하로 유도
+        num_thread: 3,    // 🎯 파트너님이 검증하신 초고속 멀티스레드 컴퓨팅 파워 자원 할당
+        num_ctx: 4096     // 🎯 문단 RAG 본문과 30개 JSON 구조체를 낭비 없이 수용할 수 있는 넉넉한 4K 컨텍스트 가동
       }
     });
 
@@ -226,23 +212,41 @@ ${condensedText}
       reqClient.on('error', reject);
       reqClient.write(reqData);
       reqClient.end();
-    });
+    });   
 
     let ai;
     try {
+        // 🚨 [디버깅 강화] AI의 순수 원본 응답을 파일로 저장하고 콘솔에 출력합니다.
+        console.log("=========================================");
+        console.log("🔍 [디버깅] AI 원본 응답 (Raw Response) 확인:");
+        console.log(aiData.response);
+        console.log("=========================================");
+        
+        // 원본 텍스트를 눈으로 확인하기 쉽도록 파일로 강제 기록
+        const debugPath = require("path").join(require("path").dirname(extractionManifestPath), "raw_gemma_debug.txt");
+        require("fs").writeFileSync(debugPath, aiData.response || "응답 없음", "utf8");
+
         const cleanResponse = (aiData.response || "{}").replace(/```json/g, '').replace(/```/g, '').trim();
         ai = JSON.parse(cleanResponse);
+        
+        // 🚨 [디버깅 강화] 파싱된 JSON 객체가 어떤 키값들을 가지고 있는지 확인합니다.
+        console.log("✅ [디버깅] 파싱 성공! AI가 뱉어낸 키(Key) 목록:", Object.keys(ai));
     } catch (parseErr) {
-        console.error("⚠️ AI 응답 파싱 실패:", aiData.response);
-        throw new Error("AI가 올바른 JSON을 반환하지 않았습니다.");
+        console.error("⚠️ AI 응답 파싱 실패:", parseErr.message);
+        
+        // 에러가 났을 때도 원본을 보존합니다.
+        const errorPath = require("path").join(require("path").dirname(extractionManifestPath), "raw_gemma_error.txt");
+        require("fs").writeFileSync(errorPath, `파싱 에러: ${parseErr.message}\n\n원본 응답:\n${aiData.response}`, "utf8");
+        
+        throw new Error("AI가 올바른 JSON 구조를 반환하지 못했습니다.");
     }
 
-    // 💡 기존의 안정적인 mapField 로직 유지 및 확장
     const mapField = (target, key, val) => {
-      if (val !== undefined && val !== null && val !== "null") {
+      // 💡 공백 주입 방지: 값이 존재할 때만 정상 draft 상태로 기입
+      if (val !== undefined && val !== null && val !== "null" && val !== "") {
           target[key] = { field: key, value: val, confidence: 0.9, source_type: "ai", status: "draft" };
       } else {
-          target[key] = { field: key, value: "", confidence: 0.0, source_type: "ai", status: "draft" };
+          target[key] = { field: key, value: "정보 없음", confidence: 0.1, source_type: "ai", status: "draft" };
       }
     };
 
@@ -253,43 +257,43 @@ ${condensedText}
     mapField(draft.draft_fields, "product_tech_summary", ai.product_tech_summary);
     mapField(draft.draft_fields, "top_needs_or_pain_points", ai.top_needs_or_pain_points);
 
-    // 2. 행정용 필수 팩트 필드 완벽 복구 매핑 (v2_safe_candidate_fields 영역)
-    mapField(draft.v2_safe_candidate_fields, "establishment_date", ai.establishment_date);
-    mapField(draft.v2_safe_candidate_fields, "current_stage", ai.current_stage);
+    // 2. 행정용 필수 팩트 및 심층/신규 필드 완벽 복구 매핑 (v2_safe_candidate_fields 영역으로 30개 필드 전수 바인딩)
     mapField(draft.v2_safe_candidate_fields, "applicant_type", ai.applicant_type);
+    mapField(draft.v2_safe_candidate_fields, "business_registration_status", ai.business_registration_status);
+    mapField(draft.v2_safe_candidate_fields, "establishment_date", ai.establishment_date);
+    mapField(draft.v2_safe_candidate_fields, "business_age_category", ai.business_age_category);
+    mapField(draft.v2_safe_candidate_fields, "sme_status", ai.sme_status);
+    mapField(draft.v2_safe_candidate_fields, "government_support_restriction_status", ai.government_support_restriction_status);
+    mapField(draft.v2_safe_candidate_fields, "duplicate_support_risk_status", ai.duplicate_support_risk_status);
     mapField(draft.v2_safe_candidate_fields, "venture_confirmation_status", ai.venture_confirmation_status);
     mapField(draft.v2_safe_candidate_fields, "investment_status", ai.investment_status);
-    mapField(draft.v2_safe_candidate_fields, "sme_status", ai.sme_status);
-    mapField(draft.v2_safe_candidate_fields, "sales_amount", ai.sales_amount);
-    mapField(draft.v2_safe_candidate_fields, "employee_count", ai.employee_count);
-
-    // 3. 기존 심층 매칭 요건 및 서사 필드 복구 매핑
-    mapField(draft.v2_safe_candidate_fields, "agrifood_value_chain", ai.agrifood_value_chain);
-    mapField(draft.v2_safe_candidate_fields, "has_overseas_partner_or_loi", ai.has_overseas_partner_or_loi);
-    mapField(draft.v2_safe_candidate_fields, "youth_founder_condition_status", ai.youth_founder_condition_status);
+    mapField(draft.v2_safe_candidate_fields, "self_funding_or_cost_share_status", ai.self_funding_or_cost_share_status);
+    mapField(draft.v2_safe_candidate_fields, "current_stage", ai.current_stage);
+    mapField(draft.v2_safe_candidate_fields, "green_bio_or_smart_agri_flag", ai.green_bio_or_smart_agri_flag);
     mapField(draft.v2_safe_candidate_fields, "technology_transfer_status", ai.technology_transfer_status);
     mapField(draft.v2_safe_candidate_fields, "certification_or_test_need", ai.certification_or_test_need);
     mapField(draft.v2_safe_candidate_fields, "sales_record_status", ai.sales_record_status);
     mapField(draft.v2_safe_candidate_fields, "export_intent", ai.export_intent);
     mapField(draft.v2_safe_candidate_fields, "target_country_or_market", ai.target_country_or_market);
-    mapField(draft.v2_safe_candidate_fields, "green_bio_or_smart_agri_flag", ai.green_bio_or_smart_agri_flag);
-
-    // 4. 신규 고도화 정량적 숫자 및 검증 구조 매핑
+    mapField(draft.v2_safe_candidate_fields, "youth_founder_condition_status", ai.youth_founder_condition_status);
+    mapField(draft.v2_safe_candidate_fields, "representative_age_condition_status", ai.representative_age_condition_status);
+    mapField(draft.v2_safe_candidate_fields, "additional_matching_notes", ai.additional_matching_notes);
     mapField(draft.v2_safe_candidate_fields, "total_investment_amount", ai.total_investment_amount);
     mapField(draft.v2_safe_candidate_fields, "annual_revenue", ai.annual_revenue);
+    mapField(draft.v2_safe_candidate_fields, "employee_count", ai.employee_count);
     mapField(draft.v2_safe_candidate_fields, "value_chain_tag", ai.value_chain_tag);
-    mapField(draft.v2_safe_candidate_fields, "green_bio_or_smart_agri", ai.green_bio_or_smart_agri);
-    
-    // 💡 [신규 스키마] 제조 인프라, 수상 이력, 지리적 가점 메모리 바인딩
+    mapField(draft.v2_safe_candidate_fields, "agrifood_value_chain", ai.agrifood_value_chain);
+    mapField(draft.v2_safe_candidate_fields, "has_overseas_partner_or_loi", ai.has_overseas_partner_or_loi);
     mapField(draft.v2_safe_candidate_fields, "has_own_factory", ai.has_own_factory);
     mapField(draft.v2_safe_candidate_fields, "government_awards_certificates", ai.government_awards_certificates);
     mapField(draft.v2_safe_candidate_fields, "geographic_advantage", ai.geographic_advantage);
+    mapField(draft.v2_safe_candidate_fields, "green_bio_or_smart_agri", ai.green_bio_or_smart_agri);
 
-    draft.notes = "성공적으로 추출되었습니다.";
-    console.log(`✅ [AI 정밀 추출 완료] 기존 필드 복구 및 고도화 정량 데이터 추출 완벽 성공!`);
+    draft.notes = "성공적으로 정밀 추출 및 폴백 연산이 완료되었습니다.";
+    console.log(`✅ [AI 정밀 추출 완료] 본문 유실 차단 및 공백 방어선 가동 성공!`);
   } catch (error) {
-    console.error("❌ 추출 에러:", error);
-    draft.notes = "추출 중 오류 발생";
+    console.error("❌ 추출 에러 발생, 기본값 주입:", error);
+    draft.notes = "추출 중 내부 오류가 발생하여 기본 방어 스펙을 주입했습니다.";
   }
   return draft;
 }

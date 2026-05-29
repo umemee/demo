@@ -789,14 +789,14 @@ async function handleRunGemmaMatch(req, res, url) {
     }
 
     // 2. 49개 순정 사업 DB 불러오기
-    const dbPath = path.join(__dirname, "gemma4_final_pure_master_db.json");
+    // 🟢 조치: __dirname 대신 process.cwd()로 교체하여 하드코딩 경로를 원천 차단합니다.
+    const dbPath = path.join(process.cwd(), "gemma4_final_pure_master_db.json");
     let allPrograms = [];
     try {
       allPrograms = JSON.parse(await fs.readFile(dbPath, "utf8"));
     } catch (e) {
       throw new Error("gemma4_final_pure_master_db.json 파일을 찾을 수 없습니다.");
     }
-
     // 3. [Phase 2] 다면 가중치 균형 분배형 초고속 사전 필터링 (글로벌/전시 5대 차원 균형 고도화 패치)
     const baseKeywords = [
       safeInput.industry_field, safeInput.current_stage, safeInput.applicant_type, safeInput.region,

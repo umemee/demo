@@ -41,17 +41,23 @@ let cachedV2ProgramIndexPath = null;
 
 async function handleRequest(req, res) {
   const url = new URL(req.url, `http://${req.headers.host}`);
+  
   if (req.method === "GET" && url.pathname === "/") {
-    const html = await fs.readFile(path.join(__dirname, "index.html"), "utf8");
+    // __dirname 대신 process.cwd() 사용
+    const html = await fs.readFile(path.join(process.cwd(), "index.html"), "utf8");
     return send(res, 200, html, "text/html; charset=utf-8");
   }
+  
   if (req.method === "GET" && url.pathname === "/demo.html") {
-    const html = await fs.readFile(path.join(__dirname, "demo.html"), "utf8");
+    // __dirname 대신 process.cwd() 사용
+    const html = await fs.readFile(path.join(process.cwd(), "demo.html"), "utf8");
     return send(res, 200, html, "text/html; charset=utf-8");
   }
+  
   // --- [수정 코드] demo_v2.html 경로 추가 ---
   if (req.method === "GET" && url.pathname === "/demo_v2.html") {
-    const html = await fs.readFile(path.join(__dirname, "demo_v2.html"), "utf8");
+    // __dirname 대신 process.cwd() 사용
+    const html = await fs.readFile(path.join(process.cwd(), "demo_v2.html"), "utf8");
     return send(res, 200, html, "text/html; charset=utf-8");
   }
 // 1. 매칭 및 파이프라인 엔진 (v2Handlers, hashHandlers, pdfHandlers, aiHandlers)
@@ -88,11 +94,11 @@ async function handleRequest(req, res) {
   
   if (req.method === "GET" && url.pathname === "/tailwind.js") {
     try {
-      const scriptContent = await fs.readFile(path.join(__dirname, "tailwind.js"), "utf8");
+      // 🟢 조치: process.cwd() 기반의 실시간 디스크 상대 경로로 가드레일 교체
+      const scriptContent = await fs.readFile(path.join(process.cwd(), "tailwind.js"), "utf8");
       return send(res, 200, scriptContent, "application/javascript; charset=utf-8");
     } catch (err) {
       console.error("tailwind.js 파일을 찾을 수 없습니다:", err);
-      // 파일이 없으면 그냥 아래의 404 에러로 넘어갑니다.
     }
   }
   return json(res, 404, { ok: false, error: "Not found" });
