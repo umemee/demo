@@ -1954,225 +1954,98 @@ function buildV2SignalSpecs(safeInput) {
 }
 
 function scoreV2ProgramCandidate(safeInput, programIndexItem) {
-  const programText = buildV2ProgramHaystack(programIndexItem);
-  const programTarget = String(programIndexItem?.target_type || "").trim();
-  const applicantType = String(safeInput?.applicant_type || "");
+  // 1. 새로운 DB 규격(raw_)에 맞춰 텍스트 병합 (안전한 옵셔널 체이닝)
+  const programText = String([
+    programIndexItem.raw_target_audience || "",
+    programIndexItem.raw_support_content || "",
+    programIndexItem.raw_apply_method || "",
+    programIndexItem.program_name || ""
+  ].join(" ")).toLowerCase();
+
+  const combinedCompanyText = String([
+    safeInput?.industry_field, 
+    safeInput?.product_tech_summary,
+    Array.isArray(safeInput?.top_needs_or_pain_points) ? safeInput.top_needs_or_pain_points.join(" ") : (safeInput?.top_needs_or_pain_points || ""), 
+    safeInput?.current_stage,
+    Array.isArray(safeInput?.target_country_or_market) ? safeInput.target_country_or_market.join(" ") : (safeInput?.target_country_or_market || "")
+  ].join(" ")).toLowerCase();
+
   const region = String(safeInput?.region || "");
   const estDate = safeInput?.establishment_date;
-  const techTransfer = String(safeInput?.technology_transfer_status || "");
-  const investment = String(safeInput?.investment_status || "");
   const youthFounder = String(safeInput?.youth_founder_condition_status || "");
 
   let scoreReasons = [];
   let cautionFlags = [];
-
-  // --- [1단계] 하드 필터 (HF-1 ~ HF-9) ---
   let hfPass = true;
   let failedHF = null;
-  let hf7Failed = false;
 
-  // 💡 신규 HF-8: 농식품 가치사슬 도메인 엄격 격리 규칙
-  const companyValueChain = String(safeInput?.agrifood_value_chain || "").trim();
-  if (/(스마트팜 수출 활성화|해외 온실 구축|기자재 실증|작물 재배 지원)/.test(programIndexItem?.program_name || programText)) {
-    if (companyValueChain === "2차 가공") {
-      hfPass = false; failedHF = "HF-8(도메인 불일치: 1차 생산 공고에 2차 가공 기업 지원 불가)";
+  // --- [1단계] 하드 필터 (새로운 JSON DB의 Eligibility Filters 완벽 적용) ---
+  const filters = programIndexItem.eligibility_filters || {};
+
+  if (filters.max_business_age_years && filters.max_business_age_years !== 99 && estDate) {
+    const estYear = parseInt(estDate.split("-")[0], 10);
+    const businessAge = new Date().getFullYear() - estYear;
+    if (businessAge > filters.max_business_age_years) {
+      hfPass = false; failedHF = `업력 제한 초과 (${filters.max_business_age_years}년)`;
     }
   }
+  if (hfPass && filters.max_founder_age && filters.max_founder_age !== 99 && youthFounder !== "yes") {
+    hfPass = false; failedHF = `청년(만 ${filters.max_founder_age}세 이하) 연령 요건 미충족`;
+  }
+  if (hfPass && filters.target_locations && !filters.target_locations.includes("전국")) {
+     if (!filters.target_locations.some(loc => region.includes(loc))) {
+        hfPass = false; failedHF = `지역 제한 불일치 (${filters.target_locations.join(", ")})`;
+     }
+  }
+  if (hfPass && filters.allowed_industries && !filters.allowed_industries.includes("전분야")) {
+      const companyIndustry = String(safeInput?.industry_field || "");
+      if (!filters.allowed_industries.some(ind => companyIndustry.includes(ind))) {
+          hfPass = false; failedHF = `업종 제한 불일치`;
+      }
+  }
 
-  // 💡 신규 HF-9: 공고문 "자격 제한" 기반 체급 하드 필터 (예: 민간투자 기반 스케일업)
+  // --- [2단계] 소프트 스코어 (ss1 ~ ss5 - 100점 만점 체계) ---
+  let ss1 = 0, ss2 = 0, ss3 = 0, ss4 = 0, ss5 = 0;
+
+  // SS1: 산업 및 기술 부합도 (최대 40점)
+  const isTechMatch = /(ai|인공지능|자율주행|로봇|데이터|플랫폼|스마트|바이오|iot|비전|탐지)/i.test(combinedCompanyText) && /(ai|로봇|스마트|데이터|혁신|첨단|테크|자율주행)/i.test(programText);
+  const isDomainMatch = /(농업|농기계|농식품|식품|축산|푸드테크|애그테크|그린바이오)/i.test(combinedCompanyText) && /(농업|농기계|농식품|식품|축산|푸드테크|애그테크|그린바이오)/i.test(programText);
+  if (isTechMatch && isDomainMatch) { ss1 = 40; scoreReasons.push("핵심 기술 및 산업 도메인 완벽 일치 (+40점)"); }
+  else if (isTechMatch || isDomainMatch) { ss1 = 20; scoreReasons.push("기술 또는 산업 도메인 부분 일치 (+20점)"); }
+  else { ss1 = 10; }
+
+  // SS2: 단기 사업화 목표 직결성 (최대 30점)
+  const needsValidation = /(실증|검증|poc|테스트|시범)/i.test(combinedCompanyText) && /(실증|검증|poc|테스트|시범)/i.test(programText);
+  const needsCommercial = /(상용화|사업화|도입|보급|양산)/i.test(combinedCompanyText) && /(상용화|사업화|도입|보급|양산|육성)/i.test(programText);
+  if (needsValidation && needsCommercial) { ss2 = 30; scoreReasons.push("사업화 및 현장 실증 니즈 완벽 부합 (+30점)"); }
+  else if (needsValidation || needsCommercial) { ss2 = 15; scoreReasons.push("사업화/실증 니즈 부분 부합 (+15점)"); }
+  else { ss2 = 10; }
+
+  // SS3: 스케일업 적합성 (최대 15점)
   const invAmount = Number(safeInput?.total_investment_amount) || 0;
-  if (programIndexItem?.program_id === "private_investment_based_scale_up" && invAmount < 500000000) {
-      hfPass = false; failedHF = "HF-9(체급 미달: 스케일업 사업의 누적 투자 5억 원 최소 조건 미충족)";
+  if (invAmount > 0 && /(스케일업|투자|벤처육성|금융|평가)/i.test(programText)) {
+      ss3 = 15; scoreReasons.push("투자 유치 체급(스케일업) 적합 (+15점)");
+  } else {
+      ss3 = 5;
   }
 
-  // HF-1. 신청자 유형 (비기업 대상 공고 필터링)
-  if (/(농업인|농가|농업경영체|종자업자|묘목업체|학교)/.test(programText) && !/(기업|startup|sme)/i.test(programText)) {
-    if (!/(농업인|농가|농업경영체)/.test(applicantType)) {
-      hfPass = false; failedHF = "HF-1(신청자 유형 불일치: 비기업 대상 공고)";
-    }
-  }
+  // SS4: 인프라 및 글로벌 보너스 (최대 15점)
+  const factors = programIndexItem.scoring_factors || {};
+  const needsExport = /(해외|수출|글로벌)/i.test(combinedCompanyText);
+  if (factors.is_global_or_export && needsExport) {
+      ss4 = 15; scoreReasons.push("글로벌/수출 진출 요건 우대 충족 (+15점)");
+  } else { ss4 = 5; }
 
-  // HF-2. 업력 요건
-  if (estDate && programText.includes("년 이내")) {
-    const yearsMatch = programText.match(/(\d+)년\s*이내/);
-    if (yearsMatch) {
-      const limitYears = parseInt(yearsMatch[1], 10);
-      const estYear = parseInt(estDate.split("-")[0], 10);
-      const currentYear = new Date().getFullYear();
-      if (currentYear - estYear > limitYears) {
-        hfPass = false; failedHF = `HF-2(업력 ${limitYears}년 초과)`;
-      }
-    }
-  }
-
-  // HF-3. 연령 제한
-  if (/(청년|39세 이하|40세 미만)/.test(programText) && youthFounder !== "yes") {
-     hfPass = false; failedHF = "HF-3(연령 조건 미충족)";
-  }
-
-  // HF-4. 지역 제한 및 💡 [최종 처방] 지리적 락인(Lock-in) 하드 필터 알고리즘 구현
-  const regions = ["서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"];
-  const targetAudienceText = String(programIndexItem?.target_audience || "");
-  const progNameText = String(programIndexItem?.program_name || "");
-  const companyRegion = String(region || safeInput?.region || "");
-
-  // 특정 한정 지역(전북/익산 등) 공고문 조건 스캔
-  if (targetAudienceText.includes("전북") || targetAudienceText.includes("익산") || progNameText.includes("전북") || progNameText.includes("익산")) {
-    if (companyRegion.includes("전북") || companyRegion.includes("익산")) {
-      // 🎯 해당 한정 지역 사업에 부합하는 관내 기업인 경우 메가 보너스 점수 부여 (체급 점수 섀도잉 방어)
-      ss4 += 40; // 처방전 규격 완벽 반영: SS_Region 우대 점수 상향 조정
-      cautionFlags.push("지역 락인 우대 — 전북/익산 관내 기업 특화 보너스 점수(+40점)가 적용되었습니다.");
-    } else {
-      // 🎯 전북/익산 한정 사업인데 타지역 기업인 경우 하드 필터(HF) 즉시 탈락 처리
-      hfPass = false; 
-      failedHF = "HF-4(지리적 락인 탈락: 전북/익산 관내 제한 공고에 타지역 기업 지원 불가)";
-    }
-  }
-
-  // 범용 지역 제한 키워드 보수적 스캔 규칙 유지
-  for (const reg of regions) {
-    if (programText.includes(`${reg} 소재`) && !companyRegion.includes(reg)) {
-      hfPass = false; 
-      failedHF = `HF-4(지역 제한: ${reg} 미포함)`;
-    }
-  }
-
-  // --- [2단계] 소프트 스코어 (SS-1 ~ SS-5 아키텍처 확장) ---
-  let ss1 = 0, ss2 = 0, ss3 = 0, ss4_base = 0, ss5 = 0;
-  const combinedCompanyText = [
-    safeInput?.industry_field, safeInput?.product_tech_summary, 
-    safeInput?.top_needs_or_pain_points?.join(" "), safeInput?.current_stage,
-    safeInput?.target_country_or_market?.join(" ")
-  ].join(" ").toLowerCase();
-
-  // SS-1. 핵심 기술 및 산업 분야 적합도 (40점 만점)
-  const isTechMatch = /(ai|인공지능|로봇|데이터|플랫폼|스마트|바이오|iot|비전|탐지)/i.test(combinedCompanyText) && /(ai|로봇|스마트|데이터|혁신|첨단|테크)/i.test(programText);
-  const isDomainMatch = /(농업|농식품|식품|축산|푸드테크)/i.test(combinedCompanyText) && /(농업|농식품|식품|축산|푸드테크)/i.test(programText);
-  if (isTechMatch && isDomainMatch) ss1 = 40;
-  else if (isTechMatch || isDomainMatch) ss1 = 20; 
-
-  // SS-2. 단기 사업화 목표 직결성 (40점 만점)
-  const needsValidation = /(실증|검증|poc|테스트)/i.test(combinedCompanyText) && /(실증|검증|poc|테스트)/i.test(programText);
-  const needsExport = /(해외|수출|글로벌)/i.test(combinedCompanyText) && /(해외|수출|글로벌)/i.test(programText);
-  const needsSales = /(판로|유통|전시|박람회|마케팅|부스)/i.test(combinedCompanyText) && /(판로|유통|전시|박람회|마케팅)/i.test(programText);
-  const needsCommercial = /(상용화|사업화|도입|보급)/i.test(combinedCompanyText) && /(상용화|사업화|도입|보급)/i.test(programText);
-  
-  let matchCount = (needsValidation ? 1 : 0) + (needsExport ? 1 : 0) + (needsSales ? 1 : 0) + (needsCommercial ? 1 : 0);
-  if (matchCount >= 2) ss2 = 40;
-  else if (matchCount === 1) ss2 = 20; 
-
-  // SS-3. 기존 스케일업 단계 적합성 (20점 만점)
-  const isScaleUp = /(시리즈|series|투자 유치|성장|스케일업)/i.test(combinedCompanyText) || /(series_a_plus)/i.test(investment);
-  const programSupportsScaleUp = /(스케일업|도약|성장|대규모)/i.test(programText);
-  if (isScaleUp && programSupportsScaleUp) ss3 = 20;
-  else if (!isScaleUp && !programSupportsScaleUp) ss3 = 20; 
-  else ss3 = 10;
-
-  // 💡 SS-4. 투자 체급(Stage) 및 BM(공장 유무) 기반 가중치 스코어 보너스 맵
-  if (invAmount < 500000000) {
-    if (/(액셀러레이팅|창업콘테스트|초기)/.test(programText)) ss4_base += 10;
-    if (/(스케일업|공정고도화)/.test(programText)) ss4_base -= 15;
-  } else if (invAmount >= 500000000 && invAmount < 1000000000) {
-    if (/(공정고도화|글로벌 진출|스케일업)/.test(programText)) ss4_base += 10;
-    if (/(초기 창업|예비창업|기초 교육)/.test(programText)) ss4_base -= 10;
-  } else if (invAmount >= 1000000000) {
-    if (/(민간투자기반 스케일업|대규모 자금지원)/.test(programText)) ss4_base += 20;
-    if (/(초기|콘테스트|교육)/.test(programText)) ss4_base -= 30;
-  }
-
-  // 💡 마스터 DB의 공장 필수 선언(requires_manufacturing_facility) 및 예외 차단
-  if (programIndexItem?.requires_manufacturing_facility === true && hasFactory === "no") {
-    ss4_base -= 30; // SS_FactoryPenalty = -30 points
-    cautionFlags.push("외주 위탁 생산 기업이 설비 구축 필수 사업에 지원하여 서류 심사 감점 및 탈락 리스크가 높습니다.");
-  } else if (hasFactory === "no" && /(설비구축|공정고도화)/.test(programText)) {
-    ss4_base -= 20;
-    cautionFlags.push("외주 위탁 생산 기업이 설비구축 사업에 지원할 경우 정성 평가 감점 요인이 될 수 있습니다.");
-  }
-
-  // 지역 메가 보너스 합산
-  ss4 += ss4_base;
-
-  // 💡 SS-5. Two-Step Token Matching 기반 정부 수상 이력 가점 엔진
-  const AWARD_TOKEN_MAP = {
-    "CONTEST_AGRI": /농식품\s*창업\s*콘테스트|창업\s*콘테스트/i,
-    "MINISTER_AWARD": /장관상|최우수상|우수상/i,
-    "HACCP_CERT": /HACCP|해썹/i
-  };
-
-  const companyAwardsText = String(safeInput?.government_awards_certificates || "").trim();
-  const preferredAwards = programIndexItem?.preferred_awards || [];
-
-  if (preferredAwards.length > 0 && companyAwardsText) {
-    let hasAwardMatch = false;
-    for (let preferredToken of preferredAwards) {
-      if (AWARD_TOKEN_MAP[preferredToken] && AWARD_TOKEN_MAP[preferredToken].test(companyAwardsText)) {
-        hasAwardMatch = true;
-        break;
-      }
-    }
-    if (hasAwardMatch) {
-      ss5 += 25; // SS_AwardBonus = +25 points
-      cautionFlags.push("우대 요건 부합 — 정부 주관 포상 및 인증 이력 가점(25점) 적용 대상입니다.");
-    }
-  }
-
-  // --- [3단계] 예외 처리 및 증빙 확인 규칙 ---
-  if (hf7Failed && ss2 === 40) {
-    hf7Failed = false; 
-    cautionFlags.push("조건부 매칭 — 컨소시엄 구성 전략 변경 제안 필요");
-  } else if (hf7Failed) {
-    hfPass = false; failedHF = "HF-7(컨소시엄 구성 요건 불일치)";
-  }
-
-  if (ss1 === 20 && ss2 === 40) {
-    cautionFlags.push("산업 분야 경계 애매 — 담당자 최종 확인 권장");
-  }
-
-  let isActionRequired = false;
-  const hasOverseasDoc = String(safeInput?.has_overseas_partner_or_loi || "").trim();
-  
-  if (/(수출계약서|업무협약서|LoI|실증의향서|수출논의 진행)/.test(programText)) {
-    if (hasOverseasDoc === "no") {
-      ss2 = Math.max(0, ss2 - 20); 
-      isActionRequired = true;
-      cautionFlags.push("필수 제출 서류(수출계약서/MOU/LoI 등)의 객체적 증빙 보완 필요");
-    }
-  }
-
-  // --- [4단계] 최종 매칭 판단 및 임계값 (Threshold) 적용 ---
+  // 총점 합산 (기본 100점 만점 체계)
   let totalScore = ss1 + ss2 + ss3 + ss4 + ss5;
   if (!hfPass) totalScore = 0;
 
-  let recommendationLane = "excluded";
-  let finalFitStatus = "적합";
-
-  if (programTarget === "reference_only") {
-    recommendationLane = "reference";
-  } else if (hfPass && totalScore >= 70) {
-    recommendationLane = "candidate";
-    if (isActionRequired) {
-      finalFitStatus = "조건부 매칭"; // 3단계 실무 분류 패스 이식
-    } else {
-      finalFitStatus = "완전 매칭";
-    }
-  } else if (hfPass && totalScore >= 40) {
-    recommendationLane = "reference";
-    finalFitStatus = "참고용 매칭";
-  }
-
-  if (!hfPass) {
-    scoreReasons.push(`[탈락] 하드 필터 미충족: ${failedHF}`);
-  } else {
-    scoreReasons.push(`[통과] ${finalFitStatus} 상태 (합계 ${totalScore}점 - SS1:${ss1}, SS2:${ss2}, SS3:${ss3})`);
-  }
-
   return {
     score: totalScore,
+    hfPass: hfPass,
+    failedHF: failedHF,
     score_reasons: scoreReasons,
-    caution_flags: cautionFlags,
-    matched_signals: [{ field: "total_score", bonus: totalScore, signal_kind: "calculated" }],
-    recommendation_lane: recommendationLane,
-    fit_status: finalFitStatus // AI 및 프론트엔드 전송용 프로퍼티 안착
+    cautionFlags: cautionFlags
   };
 }
 
@@ -3214,5 +3087,6 @@ module.exports = {
   buildV2CandidateRetrievalResult, 
   prepareV2PipelineArtifactsFromSafeInput, 
   loadV2ProgramIndex,
-  ensureFastMatchSafeInput
+  ensureFastMatchSafeInput,
+  scoreV2ProgramCandidate
 };

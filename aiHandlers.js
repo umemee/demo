@@ -98,7 +98,6 @@ async function generateAutofillDraftWithAI(text, caseId, sourcePath, extractionM
     const blocks = rawText.split(/\n\s*\n/); 
     
     const keywords = ["매출", "투자", "고용", "설립", "대표", "단계", "지원", "자금", "시장", "기술", "제품", "TRL", "자부담", "국고", "수출", "인증", "특허", "수상", "공장", "농업", "스마트", "생육", "방제", "드론", "AI"]; 
-    
     let filteredBlocks = [];
     let currentLength = 0;
     const MAX_ALLOWED_CHARS = 4000; // 🎯 뇌 용량(num_ctx) 초과로 인한 템플릿 잘림 현상을 막기 위해 4000자로 최적화
@@ -122,6 +121,62 @@ async function generateAutofillDraftWithAI(text, caseId, sourcePath, extractionM
         console.log("⚠️ 스마트 RAG 압축 결과가 부족하여 원본 문서의 구조를 그대로 유지하여 전송합니다.");
         condensedText = rawText.length > MAX_ALLOWED_CHARS ? rawText.slice(0, MAX_ALLOWED_CHARS) : rawText;
     }
+
+    // [테이블 평문 변환] 정보 손실 없이 마크다운 테이블 토큰 낭비 제거
+    // | 매출액 | 2023 | 400백만원 | → 매출액: 2023 400백만원
+    function flattenMarkdownTables(text) {
+        const lines = text.split('\n');
+        const result = [];
+        let tableBuffer = [];
+        let inTable = false;
+
+        for (const line of lines) {
+            const isTableRow = /^\s*\|/.test(line);
+            const isSeparator = /^\s*\|[\s\-|]+\|\s*$/.test(line);
+
+            if (isSeparator) {
+                // 구분선은 버림
+                continue;
+            }
+
+            if (isTableRow) {
+                inTable = true;
+                // 셀 추출: | 셀1 | 셀2 | → ['셀1', '셀2']
+                const cells = line
+                    .split('|')
+                    .map(c => c.replace(/<br\s*\/?>/gi, ' ').replace(/\s+/g, ' ').trim())
+                    .filter(c => c.length > 0);
+
+                if (cells.length > 0) {
+                    // 첫 셀이 레이블, 나머지가 값인 구조로 평문화
+                    const flat = cells.join(': ').replace(/:\s*:/g, ' ');
+                    tableBuffer.push(flat);
+                }
+            } else {
+                if (inTable && tableBuffer.length > 0) {
+                    // 테이블 끝 → 버퍼를 한 단락으로 합쳐서 결과에 추가
+                    result.push(tableBuffer.join(' | '));
+                    tableBuffer = [];
+                    inTable = false;
+                }
+                result.push(line);
+            }
+        }
+
+        // 마지막 테이블 처리
+        if (tableBuffer.length > 0) {
+            result.push(tableBuffer.join(' | '));
+        }
+
+        return result.join('\n')
+            .replace(/\n{3,}/g, '\n\n')
+            .trim();
+    }
+
+    const beforeLen = condensedText.length;
+    condensedText = flattenMarkdownTables(condensedText);
+    const afterLen = condensedText.length;
+    console.log(`📐 [테이블 평문화] ${beforeLen}자 → ${afterLen}자 (${Math.round((1 - afterLen/beforeLen)*100)}% 압축)`);
 
     try {
         const inputDebugPath = require("path").join(require("path").dirname(extractionManifestPath), "raw_gemma_input_debug_v2.txt");
@@ -158,20 +213,20 @@ ${condensedText}
   "venture_confirmation_status": "",
   "investment_status": "",
   "self_funding_or_cost_share_status": "",
-  "technology_transfer_status": "",
+  "technology_transfer_status": "completed, in_progress, 또는 not_applicable",
   "certification_or_test_need": "",
   "sales_record_status": "",
   "export_intent": "",
   "target_country_or_market": "",
-  "youth_founder_condition_status": "",
-  "representative_age_condition_status": "",
+  "youth_founder_condition_status": "만 39세 이하일 경우 yes, 40세 이상일 경우 no, 정보가 없으면 unknown", // 💡 [수정] 조건 명확화
+  "representative_age_condition_status": "대표자 만 나이(숫자만, 예: 40) 또는 출생연도(예: 1985). 모르면 0",
   "additional_matching_notes": "",
   "total_investment_amount": 0,
   "annual_revenue": 0,
   "employee_count": 0,
   "value_chain_tag": "",
   "agrifood_value_chain": "",
-  "has_overseas_partner_or_loi": "",
+  "has_overseas_partner_or_loi": "yes 또는 no",
   "has_own_factory": "",
   "government_awards_certificates": "",
   "geographic_advantage": "",
@@ -185,6 +240,7 @@ ${condensedText}
 
     const reqData = JSON.stringify({
       model: "gemma4",
+      //model: "my-gemma",
       prompt: finalPrompt,
       stream: false,
       format: "json",

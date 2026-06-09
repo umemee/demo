@@ -92,7 +92,56 @@ async function pathExists(filePath) {
 }
 
 // ✂️ 👇 2번 단계에서 잘라낸 handleLoad~ 함수들을 이 아래 빈 공간에 붙여넣으세요! 👇 ✂️
+// 💡 [Gemma 매칭 결과 자동 병합 도우미] 
+// 페이지를 새로고침(F5)하여 과거 데이터를 불러올 때도, AI가 생성한 최신 대조쌍(matched_evidence_pairs)을 잃어버리지 않고 강제로 덮어씌워주는 구세주 함수입니다.
+async function mergeGemmaMatchData(caseId, viewModel) {
+  try {
+    const gemmaPath = path.join(RUNTIME, "gemma_match_outputs", `${caseId}_gemma_match_output.manual.json`);
+    if (await pathExists(gemmaPath)) {
+      const gemmaData = JSON.parse(await fs.readFile(gemmaPath, "utf8"));
+      
+      // 하이브리드 배열 규격 지원 (recommendations, recommended, conditional 프로토콜 전수 수집)
+      const gemmaRecs = gemmaData.recommendations || gemmaData.recommended || gemmaData.conditional || [];
+      
+      if (gemmaData && Array.isArray(gemmaRecs)) {
+        // 만약 받아온 기초 뷰모델에 배열이 초기화되어 있지 않다면 강제 생성
+        if (!viewModel.recommendations || !Array.isArray(viewModel.recommendations)) {
+          viewModel.recommendations = [];
+        }
 
+        gemmaRecs.forEach(gRec => {
+          const targetName = (gRec.program_name || gRec.program_id || "").trim();
+          let exist = viewModel.recommendations.find(r => (r.program_name || r.program_id || "").trim() === targetName);
+          
+          if (!exist) {
+            // 메인 타겟 컨테이너에 누락된 캐시 항목이 있다면 데이터 단절 방지를 위해 전방위 주입
+            exist = { ...gRec };
+            viewModel.recommendations.push(exist);
+          } else {
+            // 대조 데이터 병합 가동 (계산 불능 차단 및 팩트 체인 매핑)
+            exist.matched_evidence_pairs = gRec.matched_evidence_pairs || exist.matched_evidence_pairs || [];
+            exist.short_reason = gRec.short_reason || exist.short_reason || "";
+            exist.fit_status = gRec.fit_status || exist.fit_status || "적합";
+            exist.caution_flags = gRec.caution_flags || exist.caution_flags || [];
+            exist.conditions = gRec.conditions || gRec.confirmation_needed_items || exist.conditions || [];
+            
+            // 고급 타당성 구조체(match_reason_advanced) 깊은 병합 보정
+            if (gRec.match_reason_advanced || gRec.match_reason) {
+              const srcAdv = gRec.match_reason_advanced || {};
+              exist.match_reason_advanced = {
+                selection_justification: srcAdv.selection_justification || gRec.reason || gRec.short_reason || "선정 타당성 분석 수집 완료",
+                proposal_enhancement_advice: srcAdv.proposal_enhancement_advice || gRec.match_reason || "사업계획서 보완 조언 수집 완료"
+              };
+            }
+          }
+        });
+      }
+    }
+  } catch (e) {
+    console.warn(`[Core Bridge Exception] Gemma merge failed for ${caseId}:`, e.message);
+  }
+  return viewModel;
+}
 async function handleLoadPass1Result(req, res, url) {
   const caseId = slugify(url.searchParams.get("case_id"));
   const resultPath = path.join(RESULTS, caseId, "pass1_result.md");
@@ -380,22 +429,15 @@ async function handleLoadResultViewModel(req, res, url) {
     const sourceType = manualResult.result_view_model?.metadata?.is_runtime_matcher_output || manualResult.result_view_model?.generated_from?.generation_mode === "runtime_matcher"
       ? RUNTIME_MATCHER_SOURCE_TYPE
       : manualResult.source_type;
+      
+    // 🚀 [해결책] 화면이 렌더링 되기 직전, AI가 만든 최신 대조쌍 데이터를 강제로 주입합니다.
+    const finalViewModel = await mergeGemmaMatchData(caseId, manualResult.result_view_model);
+
     return json(res, 200, {
       ok: true,
       case_id: caseId,
       source_type: sourceType,
-      result_view_model: manualResult.result_view_model,
-      result_view_model_path: manualResult.result_view_model_path,
-      warnings: manualResult.warnings,
-      missing_files: missingFiles
-    });
-  }
-  if (manualResult.parse_error) {
-    return json(res, 200, {
-      ok: false,
-      case_id: caseId,
-      source_type: manualResult.source_type,
-      result_view_model: null,
+      result_view_model: finalViewModel,
       result_view_model_path: manualResult.result_view_model_path,
       warnings: manualResult.warnings,
       missing_files: missingFiles
@@ -408,11 +450,15 @@ async function handleLoadResultViewModel(req, res, url) {
     if (missingFiles.length) {
       warnings.unshift("result_view_model.json was not found; using matcher_dry_run_result_view_model.json fallback.");
     }
+    
+    // 🚀 [해결책] 폴백 데이터에도 동일하게 주입합니다.
+    const finalViewModel = await mergeGemmaMatchData(caseId, dryRunResult.result_view_model);
+
     return json(res, 200, {
       ok: true,
       case_id: caseId,
       source_type: dryRunResult.source_type,
-      result_view_model: dryRunResult.result_view_model,
+      result_view_model: finalViewModel,
       result_view_model_path: dryRunResult.result_view_model_path,
       warnings,
       missing_files: missingFiles
@@ -767,6 +813,10 @@ async function handleLoadV2PipelineResultViewModel(req, res, url) {
     const raw = await fs.readFile(sourcePath, "utf8");
     const sourceViewModel = JSON.parse(raw);
     const normalized = normalizeDiagnosticV2PipelineResultViewModel(caseId, sourceViewModel);
+            
+    // 🚀 [해결책] V2 파이프라인 로더를 거칠 때도 AI가 만든 최신 대조쌍 데이터를 주입합니다.
+    const finalViewModel = await mergeGemmaMatchData(caseId, normalized);
+
     return json(res, 200, {
       ok: true,
       diagnostic_v2_loader: true,
@@ -775,7 +825,7 @@ async function handleLoadV2PipelineResultViewModel(req, res, url) {
       source_case_id: caseId,
       case_id: caseId,
       source_type: "diagnostic_v2_pipeline_result_view_model",
-      result_view_model: normalized,
+      result_view_model: finalViewModel,
       result_view_model_path: toRepoPath(sourcePath),
       warnings: [],
       missing_files: []

@@ -1,347 +1,835 @@
 [
   {
     "program_name": "농업경영체 대상 찾아가는 지식재산권 교육",
-    "collaborators": "시·군 농업기술센터, 농업기술원 등 농촌진흥기관",
-    "target_audience": "농촌진흥기관 관할 농업인·농업경영체",
-    "support_content": "지식재산권(특허, 상표, 품종보호권 등) 및 저작권 개념, 활용전략, 검색방법, 온라인 출원방법, 기술사업화 등 교육 수행",
-    "apply_method": "① 연초 농촌진흥청에서 교육 수요파악 시 농촌진흥기관이 신청 → 선정된 농촌진흥기관은 관할 농업인·농업경영체에게 교육일정 등 통지, ② 교육을 원하는 기관이 농진원 담당자에게 직접 신청 (수요파악 과정 포함). \n\n*참고: 교육은 연중 계속 진행됨.*\n- 문의처: 기술거래평가팀 (063-919-1317)"
+    "program_type": "EDUCATION",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농업", "농식품"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": true,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농촌진흥기관 관할 농업인·농업경영체",
+    "raw_support_content": "지식재산권(특허, 상표, 품종보호권 등) 및 저작권 개념, 활용전략, 검색방법, 온라인 출원방법, 기술사업화 등 교육 수행",
+    "raw_apply_method": "① 연초 농촌진흥청에서 교육 수요파악 시 농촌진흥기관이 신청 → 선정된 농촌진흥기관은 관할 농업인·농업경영체에게 교육일정 등 통지, ② 교육을 원하는 기관이 농진원 담당자에게 직접 신청 (수요파악 과정 포함). \n\n*참고: 교육은 연중 계속 진행됨.*\n- 문의처: 기술거래평가팀 (063-919-1317)"
   },
   {
     "program_name": "농림축산식품 R&D 기술사업화 종합정보서비스(NATI)",
-    "collaborators": "유관기관",
-    "target_audience": "농업인, 농산업체, 예비창업자",
-    "support_content": "유관기관 별 정보연계, 특허·동향 정보 제공, 기술이전 상담 및 신청 등 통합 서비스 제공",
-    "apply_method": "NATI 회원가입 후 지식정보 검색 및 기술이전 상담(신청) 접수\n- 문의처: 기술거래평가팀 (063-919-1311)"
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["전분야", "농식품"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농업인, 농산업체, 예비창업자",
+    "raw_support_content": "유관기관 별 정보연계, 특허·동향 정보 제공, 기술이전 상담 및 신청 등 통합 서비스 제공",
+    "raw_apply_method": "NATI 회원가입 후 지식정보 검색 및 기술이전 상담(신청) 접수\n- 문의처: 기술거래평가팀 (063-919-1311)"
   },
   {
     "program_name": "농촌진흥기관 보유 기술이전·확산 기술사업화",
-    "collaborators": "농촌진흥기관",
-    "target_audience": "기술사업화를 희망하는 개인 또는 법인",
-    "support_content": "농촌진흥기관의 우수기술 정보 제공 및 기술이전·계약자문 등 기술이전에 관한 전반적인 서비스 제공",
-    "apply_method": "온라인 신청 (www.nati.or.kr), 지자체 특허는 담당자 전화 상담 및 이메일 접수, 연중 계속 신청 가능 (신청 방법 상세 참조).자세한 신청 방법은 'NATI'를 통한 온라인 접수 및 지자체 특허 관련 전화/이메일 상담을 통해 확인 필요입니다. (참고: 기술검색/결정, 정산/실시료 납부 등은 www.nati.or.kr (기술사업화 종합정보망)에서 진행됨.)\n- 문의처: 기술거래평가팀 (063-919-1320, 1311, 1315, 1319, 1326)"
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["전분야", "농식품"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "기술사업화를 희망하는 개인 또는 법인",
+    "raw_support_content": "농촌진흥기관의 우수기술 정보 제공 및 기술이전·계약자문 등 기술이전에 관한 전반적인 서비스 제공",
+    "raw_apply_method": "온라인 신청 (www.nati.or.kr), 지자체 특허는 담당자 전화 상담 및 이메일 접수, 연중 계속 신청 가능 (신청 방법 상세 참조).자세한 신청 방법은 'NATI'를 통한 온라인 접수 및 지자체 특허 관련 전화/이메일 상담을 통해 확인 필요입니다. (참고: 기술검색/결정, 정산/실시료 납부 등은 www.nati.or.kr (기술사업화 종합정보망)에서 진행됨.)\n- 문의처: 기술거래평가팀 (063-919-1320, 1311, 1315, 1319, 1326)"
   },
   {
     "program_name": "식품기술거래이전지원사업 (밀착형 기술사업화 지원)",
-    "collaborators": "대학, 출연연",
-    "target_audience": "기술이전 계약 체결 또는 '식품 기술이전협의체' 보유기술을 이전받아 계약을 체결하고 유지하고 있는 개인 또는 법인",
-    "support_content": "기술 발굴 · 매칭, 기술거래와 관련된 협상 및 사업화 지원 등\n[상세 지원 유형]:\n- 유형 1 (시제품 제작·실증 등 / 21社): 사별 20백만원 지원\n- 유형 2 (기술개념·성능 검증 등 / 10社): 사별 28.5백만원 지원\n- 총 규모: 31社 내외, 합계 705백만원",
-    "apply_method": "공고문 내 제출방식 수행 (신청 시기: 4월). 문의처: 기술거래평가팀 (063-919-1322, 1327, 1333)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["식품", "푸드테크"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "기술이전 계약 체결 또는 '식품 기술이전협의체' 보유기술을 이전받아 계약을 체결하고 유지하고 있는 개인 또는 법인",
+    "raw_support_content": "기술 발굴 · 매칭, 기술거래와 관련된 협상 및 사업화 지원 등\n[상세 지원 유형]:\n- 유형 1 (시제품 제작·실증 등 / 21社): 사별 20백만원 지원\n- 유형 2 (기술개념·성능 검증 등 / 10社): 사별 28.5백만원 지원\n- 총 규모: 31社 내외, 합계 705백만원",
+    "raw_apply_method": "공고문 내 제출방식 수행 (신청 시기: 4월). 문의처: 기술거래평가팀 (063-919-1322, 1327, 1333)"
   },
   {
     "program_name": "농식품 기술평가 지원",
-    "collaborators": "농협",
-    "target_audience": "농식품 분야 특허기술 및 품종보호권 등 지식재산권 또는 노하우를 보유한 벤처·창업기업",
-    "support_content": "벤처·창업기업의 투자유치, 저금리대출 등 기술금융 창출여건 마련 지원",
-    "apply_method": "기술평가도움시스템(value.koat.or.kr) 내 “기술평가 신청”를 통한 신청, 기한은 공고일로부터 예산 소진 시까지입니다. 신청 절차는 사업공고 ‣ 사업신청 ‣ 선정평가 ‣ 계약체결 ‣ 현장평가 ‣ 평가서(최대 6주)발행입니다. 사전 절차는 사전상담 ‣ 사업신청 ‣ 계약체결 ‣ 기술평가 ‣ 결과송부 ‣ 심사/실행농협 대출입니다. 평가 결과는 기술사업화 시 발생하는 특허·품종보호권의 경제적 가치를 금액/등급으로 평가합니다.\n\n[평가 유형별 지원 내용]:\n- 기술가치평가 (투자유치 현물출자 용도): 총 수수료 15백만원 / 국고 지원율 90% (기술사업화 유발 경제적 가치를 금액으로 평가하는 100페이지 내외의 정식평가)\n- 기술력평가 (투자유치 용도): 총 수수료 2.5백만원 / 지원율 N/A (기업역량 및 기술경쟁력을 등급으로 평가하는 50페이지 내외의 약식평가)\n- 우수기술평가 (저리융자 용도): 총 수수료 0.7백만원 / 국고 지원율 50% (농협은행 저리융자에 필요한 기술평가로 기술사업화 역량에 대해 T1~T10등급으로 평가)\n- 소요자금평가 (융자금액 결정 용도): 총 수수료 0.2백만원 / 지원율 N/A (매출추정을 통해 필요한 소요자금규모를 산정하여 농협은행 저리융자금액 결정에 활용)\n- 문의처: 기술거래평가팀 (063-919-1316, 1323, 1324, 1331, 1338)"
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농식품", "애그테크", "푸드테크"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농식품 분야 특허기술 및 품종보호권 등 지식재산권 또는 노하우를 보유한 벤처·창업기업",
+    "raw_support_content": "벤처·창업기업의 투자유치, 저금리대출 등 기술금융 창출여건 마련 지원",
+    "raw_apply_method": "기술평가도움시스템(value.koat.or.kr) 내 “기술평가 신청”를 통한 신청, 기한은 공고일로부터 예산 소진 시까지입니다. 신청 절차는 사업공고 ‣ 사업신청 ‣ 선정평가 ‣ 계약체결 ‣ 현장평가 ‣ 평가서(최대 6주)발행입니다. 사전 절차는 사전상담 ‣ 사업신청 ‣ 계약체결 ‣ 기술평가 ‣ 결과송부 ‣ 심사/실행농협 대출입니다. 평가 결과는 기술사업화 시 발생하는 특허·품종보호권의 경제적 가치를 금액/등급으로 평가합니다.\n\n[평가 유형별 지원 내용]:\n- 기술가치평가 (투자유치 현물출자 용도): 총 수수료 15백만원 / 국고 지원율 90% (기술사업화 유발 경제적 가치를 금액으로 평가하는 100페이지 내외의 정식평가)\n- 기술력평가 (투자유치 용도): 총 수수료 2.5백만원 / 지원율 N/A (기업역량 및 기술경쟁력을 등급으로 평가하는 50페이지 내외의 약식평가)\n- 우수기술평가 (저리융자 용도): 총 수수료 0.7백만원 / 국고 지원율 50% (농협은행 저리융자에 필요한 기술평가로 기술사업화 역량에 대해 T1~T10등급으로 평가)\n- 소요자금평가 (융자금액 결정 용도): 총 수수료 0.2백만원 / 지원율 N/A (매출추정을 통해 필요한 소요자금규모를 산정하여 농협은행 저리융자금액 결정에 활용)\n- 문의처: 기술거래평가팀 (063-919-1316, 1323, 1324, 1331, 1338)"
   },
   {
     "program_name": "기술창업 자금지원(저리융자)",
-    "collaborators": "NH농협은행, 농·축협(조합)",
-    "target_audience": "농림축산식품업종분류에 해당하는 기술 및 노하우를 보유하고 이를 실용·사업화하고자 하는 농업법인 또는 중소기업",
-    "support_content": "저리융자 지원",
-    "apply_method": "기술평가도움시스템(value.koat.or.kr) 내 사업신청 및 농진원 기술평가 후 농협은행 대출심사/실행을 통한 자금 지원 (NH농협은행 및 농·축협(조합) 취급 기관을 통한 융자 심사 및 실행). 융자 조건 및 최종 대출액은 취급기관의 여신취급 규정에 따름. 지원 대상 및 선정 절차는 농진원 및 농협은행을 통해 진행됨. 신청 시기는 공고일부터 예산 소진 시까지이다. 평가 유형별 수수료 및 국고/기업 부담 비율은 다음과 같다: \n- 우수기술평가: 평가수수료 70만원, 국고지원 35만원(50%), 기업부담 35만원(50%) (*VAT 별도)\n- 소요자금평가: 평가수수료 20만원, 국고지원 10만원(50%), 기업부담 10만원(50%) (*VAT 별도)\n\n융자 조건:\n- 지원 한도: 사업화 소요자금 규모 평가액 중 기업당 최대 50억 원 이내 (단, 운전자금은 최대 20억원 이내)\n- 지원 조건 (금리): 고정금리 2.5%, 변동금리 2.42% (’25. 03월 기준, 월별 변동 가능)\n- 융자 기간:\n    - 운전자금: 2년 거치 3년 균분상환\n    - 시설·개보수자금: 4년 거치 6년 균분상환\n- 취급 기관: 전국 NH농협은행 및 농·축협(조합)\n- 문의처: 기술거래평가팀 (063-919-1316, 1323, 1324, 1331)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농식품"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농림축산식품업종분류에 해당하는 기술 및 노하우를 보유하고 이를 실용·사업화하고자 하는 농업법인 또는 중소기업",
+    "raw_support_content": "저리융자 지원",
+    "raw_apply_method": "기술평가도움시스템(value.koat.or.kr) 내 사업신청 및 농진원 기술평가 후 농협은행 대출심사/실행을 통한 자금 지원 (NH농협은행 및 농·축협(조합) 취급 기관을 통한 융자 심사 및 실행). 융자 조건 및 최종 대출액은 취급기관의 여신취급 규정에 따름. 지원 대상 및 선정 절차는 농진원 및 농협은행을 통해 진행됨. 신청 시기는 공고일부터 예산 소진 시까지이다. 평가 유형별 수수료 및 국고/기업 부담 비율은 다음과 같다: \n- 우수기술평가: 평가수수료 70만원, 국고지원 35만원(50%), 기업부담 35만원(50%) (*VAT 별도)\n- 소요자금평가: 평가수수료 20만원, 국고지원 10만원(50%), 기업부담 10만원(50%) (*VAT 별도)\n\n융자 조건:\n- 지원 한도: 사업화 소요자금 규모 평가액 중 기업당 최대 50억 원 이내 (단, 운전자금은 최대 20억원 이내)\n- 지원 조건 (금리): 고정금리 2.5%, 변동금리 2.42% (’25. 03월 기준, 월별 변동 가능)\n- 융자 기간:\n    - 운전자금: 2년 거치 3년 균분상환\n    - 시설·개보수자금: 4년 거치 6년 균분상환\n- 취급 기관: 전국 NH농협은행 및 농·축협(조합)\n- 문의처: 기술거래평가팀 (063-919-1316, 1323, 1324, 1331)"
   },
   {
     "program_name": "농촌진흥기관 R&D 기술평가",
-    "collaborators": "농촌진흥기관, 연구개발기관, 대학, 클러스터형 사업추진단 등 공공·국가R&D",
-    "target_audience": "공공·국가R&D",
-    "support_content": "R&D 로드맵 수립 및 연구개발성과 확산 기여",
-    "apply_method": "담당부서 문의 및 기술거래평가팀 상담 진행\n- 문의처: 기술거래평가팀 (063-919-1323, 1338)"
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["R&D", "연구기관", "공공기관"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "공공·국가R&D",
+    "raw_support_content": "R&D 로드맵 수립 및 연구개발성과 확산 기여",
+    "raw_apply_method": "담당부서 문의 및 기술거래평가팀 상담 진행\n- 문의처: 기술거래평가팀 (063-919-1323, 1338)"
   },
   {
     "program_name": "농업 공공기술 진흥사업(기술 상용화)",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "농촌진흥청 및 지방농촌진흥기관에서 개발한 기술을 한국농업기술진흥원을 통해 이전받아 계약을 유지하고 있는 기업 중, 이전받은 기술을 활용해 첨단분야 기술사업화를 추진하고자 하는 기업",
-    "support_content": "제품 개발을 위한 재료비 및 시설·장비비, 제품의 상용화를 위한 검·인증 및 시장테스트 비용, 홍보 및 마케팅 비용 등",
-    "apply_method": "이메일 접수 신청 시기: 당해연도 1 ~ 2월 (접수 마감일 기준) - 사업공고 확인 필요 (접수, 사전검토, 서면평가, 대면평가, 심의선정, 협약체결 절차 포함). 에이전시/담당팀: 사업지원팀 (문의처: 063-919-1356). 예산 규모: 정부출연금 최대 70백만원 (총 사업비의 50% 이내). 전문 유형: 기술상용화지원/단년 (사업화 모델 개발, 제품 제작, 시장테스트, 마케팅 등), FastTrack/최대2년 (사업화 모델 개발부터 시장 정착, 기업 성장까지 기술사업화 전단계 지원). FastTrack 지원 조건: ① ‘기술이전 계약체결 규모가 선납기술료 기준 10백만원 이상’, 또는 ② ‘공개경쟁입찰로 전용 실시 기술이전 계약을 체결한 경우’."
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농업", "농식품"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농촌진흥청 및 지방농촌진흥기관에서 개발한 기술을 한국농업기술진흥원을 통해 이전받아 계약을 유지하고 있는 기업 중, 이전받은 기술을 활용해 첨단분야 기술사업화를 추진하고자 기업",
+    "raw_support_content": "제품 개발을 위한 재료비 및 시설·장비비, 제품의 상용화를 위한 검·인증 및 시장테스트 비용, 홍보 및 마케팅 비용 등",
+    "raw_apply_method": "이메일 접수 신청 시기: 당해연도 1 ~ 2월 (접수 마감일 기준) - 사업공고 확인 필요 (접수, 사전검토, 서면평가, 대면평가, 심의선정, 협약체결 절차 포함). 에이전시/담당팀: 사업지원팀 (문의처: 063-919-1356). 예산 규모: 정부출연금 최대 70백만원 (총 사업비의 50% 이내). 전문 유형: 기술상용화지원/단년 (사업화 모델 개발, 제품 제작, 시장테스트, 마케팅 등), FastTrack/최대2년 (사업화 모델 개발부터 시장 정착, 기업 성장까지 기술사업화 전단계 지원). FastTrack 지원 조건: ① ‘기술이전 계약체결 규모가 선납기술료 기준 10백만원 이상’, 또는 ② ‘공개경쟁입찰로 전용 실시 기술이전 계약을 체결한 경우’."
   },
   {
     "program_name": "농식품 기술이전업체 공정고도화 사업 (설비구축)",
-    "collaborators": "농식품 기술이전업체",
-    "target_audience": "농촌진흥청 또는 지방농촌진흥기관에서 개발된 기술이 적용된 제품의 대량생산 및 판로 확대가 필요한 기업",
-    "support_content": "제품의 품질·성능 향상, 제품의 대량생산을 위한 공정 개선, 설비 구축, 제품 마케팅 등 지원 [지원 규모]: 정부출연금 최대 200백만원 (투자기업 참여형: 출연금 50% 이내 + 기업 부담금 25% 이상 + 투자금 25% 이내 / 기업 단독형: 출연금 50% 이내 + 기업 부담금 50% 이상)",
-    "apply_method": "이메일 접수 (신청 시기: 당해연도 1~2월). 문의처: 사업지원팀 (063-919-1356)",
-    "requires_manufacturing_facility": true,
-    "preferred_awards": ["CONTEST_AGRI", "MINISTER_AWARD"]
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농식품", "제조"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": true,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농촌진흥청 또는 지방농촌진흥기관에서 개발된 기술이 적용된 제품의 대량생산 및 판로 확대가 필요한 기업",
+    "raw_support_content": "제품의 품질·성능 향상, 제품의 대량생산을 위한 공정 개선, 설비 구축, 제품 마케팅 등 지원 [지원 규모]: 정부출연금 최대 200백만원 (투자기업 참여형: 출연금 50% 이내 + 기업 부담금 25% 이상 + 투자금 25% 이내 / 기업 단독형: 출연금 50% 이내 + 기업 부담금 50% 이상)",
+    "raw_apply_method": "이메일 접수 (신청 시기: 당해연도 1~2월). 문의처: 사업지원팀 (063-919-1356)"
   },
   {
     "program_name": "우수기술 사업화 지원(사업화 모델 발굴)",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "만 40세 미만의 청년 창업기업 또는 청년 농업인 (10社)",
-    "support_content": "기업수준·단계별 기술사업화 역량 강화 지원, 대중견 기업 협업 제품 검증, 판로개척 및 투자유치 지원 등",
-    "apply_method": "농진원 및 기획기관 홈페이지 공고를 통한 접수 (공고 시기: 당해연도 3월). 선정절차: 사업공고 및 접수 -> 선정평가(서류심사, 발표평가) -> 최종 선정. 문의처: 사업지원팀 (063-919-1354)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 39,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농식품", "농업"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "만 40세 미만의 청년 창업기업 또는 청년 농업인 (10社)",
+    "raw_support_content": "기업수준·단계별 기술사업화 역량 강화 지원, 대중견 기업 협업 제품 검증, 판로개척 및 투자유치 지원 등",
+    "raw_apply_method": "농진원 및 기획기관 홈페이지 공고를 통한 접수 (공고 시기: 당해연도 3월). 선정절차: 사업공고 및 접수 -> 선정평가(서류심사, 발표평가) -> 최종 선정. 문의처: 사업지원팀 (063-919-1354)"
   },
   {
     "program_name": "농업기술 산학협력 지원사업(농업기술 확산)",
-    "collaborators": "대학",
-    "target_audience": "대학",
-    "support_content": "대학의 신기술 적용 제품을 제작하여, 농가에 현장 실증하고 교육하는 전 과정 비용 지원 [지원 규모]: 과제당 국비 최대 272백만원 (국고 100%)",
-    "apply_method": "이메일 접수 (신청 시기: 당해연도 1~2월). 선정절차: 사업공고 접수 -> 사전검토 -> 서면심사 -> 대면심사 -> 심의선정 및 협약체결. 문의처: 사업지원팀 (063-919-1356)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["대학", "연구기관"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "대학",
+    "raw_support_content": "대학의 신기술 적용 제품을 제작하여, 농가에 현장 실증하고 교육하는 전 과정 비용 지원 [지원 규모]: 과제당 국비 최대 272백만원 (국고 100%)",
+    "raw_apply_method": "이메일 접수 (신청 시기: 당해연도 1~2월). 선정절차: 사업공고 접수 -> 사전검토 -> 서면심사 -> 대면심사 -> 심의선정 및 협약체결. 문의처: 사업지원팀 (063-919-1356)"
   },
   {
     "program_name": "기술융복합 현장적용 시범사업(현장실증)",
-    "collaborators": "민간 첨단 농업기술과 공공기술 결합",
-    "target_audience": "기술보완 및 제품 개선을 희망하는 기업",
-    "support_content": "기술·제품의 실증 비용 지원, 대기업 협업을 통한 제품 검증(PoC), 현장 연시회 및 투자IR 등 특화 프로그램 지원 [지원 규모]: 융복합 현장 실증 과제당 최대 70백만원 (총 사업비의 70% 이내)",
-    "apply_method": "이메일 접수 (신청 시기: 당해연도 1~2월). 선정절차: 사업공고 접수 -> 서류검토/서면평가 -> 대면평가 -> 현장평가 심의선정 -> 협약체결. 문의처: 사업지원팀 (063-919-1363)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["전분야", "농식품"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "기술보완 및 제품 개선을 희망하는 기업",
+    "raw_support_content": "기술·제품의 실증 비용 지원, 대기업 협업을 통한 제품 검증(PoC), 현장 연시회 및 투자IR 등 특화 프로그램 지원 [지원 규모]: 융복합 현장 실증 과제당 최대 70백만원 (총 사업비의 70% 이내)",
+    "raw_apply_method": "이메일 접수 (신청 시기: 당해연도 1~2월). 선정절차: 사업공고 접수 -> 서류검토/서면평가 -> 대면평가 -> 현장평가 심의선정 -> 협약체결. 문의처: 사업지원팀 (063-919-1363)"
   },
   {
     "program_name": "농업기초기반 전문기술 인재양성사업 (R&D인재양성)",
-    "collaborators": "대학, 산업체, 연구소 등 컨소시엄 구성",
-    "target_audience": "토양, 식물영양, 식물병, 해충·잡초 분야 전문인재를 양성하고자 하는 주체",
-    "support_content": "과제제안요구서(RFP)에 기반한 지원분야별 전문인재 양성을 위한 학생 인건비, 연구개발 과제비 등 [지원 규모]: 과제당 최대 980백만원 (국고 100%, 총 사업기간 4년 9개월)",
-    "apply_method": "이메일 접수 (신청 시기: 당해연도 1~2월). 선정절차: 사업공고 접수 -> IRIS(온라인) 사전검토 -> 서면평가 -> 발표평가 -> 과제협의회 및 선정 -> 협약체결. 문의처: 사업지원팀 (063-919-1352, 1354)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["대학", "연구기관", "산업체"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "토양, 식물영양, 식물병, 해충·잡초 분야 전문인재를 양성하고자 하는 주체",
+    "raw_support_content": "과제제안요구서(RFP)에 기반한 지원분야별 전문인재 양성을 위한 학생 인건비, 연구개발 과제비 등 [지원 규모]: 과제당 최대 980백만원 (국고 100%, 총 사업기간 4년 9개월)",
+    "raw_apply_method": "이메일 접수 (신청 시기: 당해연도 1~2월). 선정절차: 사업공고 접수 -> IRIS(온라인) 사전검토 -> 서면평가 -> 발표평가 -> 과제협의회 및 선정 -> 협약체결. 문의처: 사업지원팀 (063-919-1352, 1354)"
   },
   {
     "program_name": "치유농업사 자격시험 운영",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "농업, 보건, 심리, 상담 등을 포괄하는 치유농업 전문인력",
-    "support_content": "치유농업사 국가전문 자격시험 시행 및 운영",
-    "apply_method": "온라인 원서접수 홈페이지(치유농업ON: www.agrohealing.go.kr) 이용. 선정절차: 양성기관 교육 이수 ‣ 시험 접수(1·2차) ‣ 시험 응시(1·2차) ‣ 합격자 발표 ‣ 자격증 발급. 문의처: 사업지원팀 (063-919-1367)"
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["치유농업", "농업", "보건", "심리"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농업, 보건, 심리, 상담 등을 포괄하는 치유농업 전문인력",
+    "raw_support_content": "치유농업사 국가전문 자격시험 시행 및 운영",
+    "raw_apply_method": "온라인 원서접수 홈페이지(치유농업ON: www.agrohealing.go.kr) 이용. 선정절차: 양성기관 교육 이수 ‣ 시험 접수(1·2차) ‣ 시험 응시(1·2차) ‣ 합격자 발표 ‣ 자격증 발급. 문의처: 사업지원팀 (063-919-1367)"
   },
   {
     "program_name": "농식품 벤처육성 지원",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "농식품 및 농산업기술 분야로 1년 이내 창업하고자 하는 예비창업자 및 5년 이내 창업기업",
-    "support_content": "기술 및 비즈니스 모델 기반 '벤처창업 맞춤 지원 프로그램' 운영",
-    "apply_method": "신청 및 접수 (농식품창업정보망을 통해 진행됨). 공고 및 안내는 농진원 홈페이지 및 농식품창업정보망을 통해 확인 가능함. 신청 절차는 신청·접수 → 신청자격검토 → 서류·발표평가 → 선정 순임 심사됨. 신청 시기는 1월 ~ 2월임(공고에 따라 변동 가능). [세부 지원 내용]: 사업화자금 지원, 연계지원(전문가, 기술이전 등), 정보·네트워킹 등 맞춤형 지원, 육성기업 역량강화 워크숍 및 네트워킹, 전문가 컨설팅, 창업정보 제공 등 역량강화 지원. [지원 규모]: 예비창업자 평균 1,100만원 (자부담 30% 포함), 창업기업 평균 3,000만원 (자부담 30% 포함). [문의처]: 창업육성팀, 서울/경기/강원/충청/호남/영남농식품벤처창업센터 등.\n\n[전국 센터별 상세 문의처]:\n- 창업육성팀: 063-919-1433\n- 서울농식품벤처창업센터: 02-779-3326\n- 경기농식품벤처창업센터: 031-8064-1291\n- 강원농식품벤처창업센터: 033-257-8711\n- 충청농식품벤처창업센터: 044-868-6837\n- 호남농식품벤처창업센터: 062-971-7801\n- 영남농식품벤처창업센터: 053-744-9540"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 5,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농식품", "농산업기술"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농식품 및 농산업기술 분야로 1년 이내 창업하고자 하는 예비창업자 및 5년 이내 창업기업",
+    "raw_support_content": "기술 및 비즈니스 모델 기반 '벤처창업 맞춤 지원 프로그램' 운영",
+    "raw_apply_method": "신청 및 접수 (농식품창업정보망을 통해 진행됨). 공고 및 안내는 농진원 홈페이지 및 농식품창업정보망을 통해 확인 가능함. (이하 생략)"
   },
   {
     "program_name": "농식품 벤처육성 지원(첨단기술)",
-    "collaborators": "농진원, 농식품창업정보망",
-    "target_audience": "그린바이오 및 스마트농업 분야 제품 및 혁신기술을 보유한 7년 이내 기업",
-    "support_content": "첨단기술(그린바이오 및 스마트농업) 분야 유망 벤처기업을 육성하고 안정적인 사업화 및 고도화 지원",
-    "apply_method": "농식품창업정보망(www.a-startups.or.kr)을 통해 접수 및 신청 (농진원 홈페이지에서 공고 및 안내 확인 가능). 선정 절차는 공고(홈페이지) ‣ 신청·접수 ‣ 신청자격 검토 ‣ 서류평가 ‣ 현장평가 ‣ 발표평가 ‣ 최종선정 순임 (세부 사항은 공고 확인 필요). 문의처: 창업육성팀 (063-919-1430, 1433)\n[지원 규모 및 예산]: 총 300백만원 (국고 210백만원, 자부담 90백만원)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 7,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["그린바이오", "스마트농업"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "그린바이오 및 스마트농업 분야 제품 및 혁신기술을 보유한 7년 이내 기업",
+    "raw_support_content": "첨단기술(그린바이오 및 스마트농업) 분야 유망 벤처기업을 육성하고 안정적인 사업화 및 고도화 지원",
+    "raw_apply_method": "농식품창업정보망(www.a-startups.or.kr)을 통해 접수 및 신청 (농진원 홈페이지에서 공고 및 안내 확인 가능). 문의처: 창업육성팀 (063-919-1430, 1433)"
   },
   {
     "program_name": "민간투자기반 스케일업 지원",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "기술력과 사업성을 인정받아 민간투자를 유치한 우수 벤처·창업기업",
-    "support_content": "후속 매칭지원으로 유니콘 기업으로 도약 촉진",
-    "apply_method": "공고 및 안내를 통한 신청 및 접수 (공고문 별도 안내됨)\n- 공고 및 안내처: 농진원 홈페이지(www.koat.or.kr), 농식품창업정보망(www.a-startups.or.kr)\n- 접수: 공고문 별도 안내\n- 문의처: 벤처투자지원팀 (063-919-1411)\n\n**주요 지원 내용:**\n1. **사업화자금 매칭 지원:** 기업당 최대 5억원 지원\n2. **기타 지원:**\n    * 투자설명회(IR), 네트워킹 기회 제공\n\n**지원 대상 조건:**\n* 농식품 분야 7년 이내 창업기업 또는 벤처기업\n\n**지원 규모 및 재원 구성 (예시):**\n| 구분 | 민간투자금 | 국고지원금 | 자부담(현금+현물) | \n|---|---|---|---| \n| 예시 | 500백만원 | 500백만원 | 215백만원 (30%) | \n* **재원 비율:**\n    * 현금: 총 사업비의 10%\n    * 현물: 총 사업비의 20%\n\n**선정 절차:**\n1. 공고(홈페이지)\n2. 신청·접수\n3. 신청자격 검토\n4. 서류평가\n5. 현장평가\n6. 발표평가\n7. 최종선정\n\n**신청 시기:** 1월 ~ 2월"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 7,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농식품"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "기술력과 사업성을 인정받아 민간투자를 유치한 우수 벤처·창업기업",
+    "raw_support_content": "후속 매칭지원으로 유니콘 기업으로 도약 촉진",
+    "raw_apply_method": "공고 및 안내를 통한 신청 및 접수 (공고문 별도 안내됨) 문의처: 벤처투자지원팀 (063-919-1411)"
   },
   {
     "program_name": "농식품 기술창업 액셀러레이터 육성지원",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "농식품 유망 창업기업",
-    "support_content": "농식품 창업기업 대상 액셀러레이팅 프로그램 운영 비용 지원, 전문가 1:1 멘토링, 역량강화 교육, 직접·후속 투자 연계지원",
-    "apply_method": "액셀러레이터: 이메일 접수 (신청 시기: 1~2월 중) / (예비)창업기업: AC 프로그램별 별도 사이트 접수 (농진원 홈페이지 공고 참고, 신청 시기: 3~4월 중). 문의처: 벤처투자지원팀 (063-919-1415, 1416)"
+    "program_type": "EDUCATION",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농식품"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농식품 유망 창업기업",
+    "raw_support_content": "농식품 창업기업 대상 액셀러레이팅 프로그램 운영 비용 지원, 전문가 1:1 멘토링, 역량강화 교육, 직접·후속 투자 연계지원",
+    "raw_apply_method": "액셀러레이터: 이메일 접수 (신청 시기: 1~2월 중) / (예비)창업기업: AC 프로그램별 별도 사이트 접수. 문의처: 벤처투자지원팀 (063-919-1415, 1416)"
   },
   {
     "program_name": "수요기업 협업 프로그램",
-    "collaborators": "대기업, 대학(창업지원, 기술지주) 등",
-    "target_audience": "수요기업 (롯데벤처스, CJ제일제당, NH농협 등)",
-    "support_content": "투자·오픈이노베이션 지원",
-    "apply_method": "프로그램(행사)별 홈페이지 접수 (농식품 창업정보망 등을 통해 정보 제공). 문의처: 벤처투자지원팀 (063-919-1413)"
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["전분야", "농식품"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "수요기업 (롯데벤처스, CJ제일제당, NH농협 등)",
+    "raw_support_content": "투자·오픈이노베이션 지원",
+    "raw_apply_method": "프로그램(행사)별 홈페이지 접수 (농식품 창업정보망 등을 통해 정보 제공). 문의처: 벤처투자지원팀 (063-919-1413)"
   },
   {
     "program_name": "농산업체 판로지원",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "대중소 유통채널을 통한 벤처·창업기업의 매출증대 및 수요자 확보를 원하는 기업",
-    "support_content": "벤처·창업기업의 매출 증대 및 수요자 확보를 위한 지원",
-    "apply_method": "제품소개서 포함 신청서 이메일 송부 (농식품창업정보망 공고를 통한 온라인 및 이메일 신청·접수) 및 최종 선정 채널 입점 연계 지원 (오픈마켓, 홈쇼핑, 전시·홍보관 등 온·오프라인 채널 입점 지원, 유통채널 전문가 컨설팅 및 밀착지원으로 제품 개선 및 판로 확대 역량 강화 지원 등 포함). 또한, 상시 운영 '온라인 창업제품 전용관' 활용을 통한 지속적 매출 확보 지원 포함됨. 농식품 벤처창업 활성화 지원사업 수혜기업 대상 지원 포함됨.\n- 문의처: 호남농식품벤처창업센터 (062-971-7801)"
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농식품"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "대중소 유통채널을 통한 벤처·창업기업의 매출증대 및 수요자 확보를 원하는 기업",
+    "raw_support_content": "벤처·창업기업의 매출 증대 및 수요자 확보를 위한 지원",
+    "raw_apply_method": "제품소개서 포함 신청서 이메일 송부 (농식품창업정보망 공고를 통한 온라인 및 이메일 신청·접수) 및 최종 선정 채널 입점 연계 지원 (오픈마켓, 홈쇼핑, 전시·홍보관 등 온·오프라인 채널 입점 지원, 유통채널 전문가 컨설팅 및 밀착지원으로 제품 개선 및 판로 확대 역량 강화 지원 등 포함). (이하 생략)"
   },
   {
     "program_name": "농식품 창업콘테스트",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "농식품 분야 예비창업자(팀) 및 7년 이내 초기 창업자(팀)",
-    "support_content": "전문가 1:1 멘토링, IR피칭 교육·컨설팅, 투자자 연계, 박람회 등 참가를 통한 아이템 전시·홍보, 시장검증 및 네트워킹 기회 등",
-    "apply_method": "농식품 창업콘테스트 전용 홈페이지(a-challenge.kr) 온라인 신청 (제출서류: 사업계획서, 참가서약서, 개인정보동의서 등 인증서류). 신청 시기: 5월 중. 문의처: 서울농식품벤처창업센터 (02-779-3326)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 7,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농식품"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농식품 분야 예비창업자(팀) 및 7년 이내 초기 창업자(팀)",
+    "raw_support_content": "전문가 1:1 멘토링, IR피칭 교육·컨설팅, 투자자 연계, 박람회 등 참가를 통한 아이템 전시·홍보, 시장검증 및 네트워킹 기회 등",
+    "raw_apply_method": "농식품 창업콘테스트 전용 홈페이지(a-challenge.kr) 온라인 신청 (제출서류: 사업계획서, 참가서약서, 개인정보동의서 등 인증서류). 신청 시기: 5월 중. 문의처: 서울농식품벤처창업센터 (02-779-3326)"
   },
   {
     "program_name": "농식품 테크 스타트업 창업박람회 (AFPRO 2025)",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "스마트농업, 그린바이오, 푸드테크 등에 해당하는 농식품 창업기업 및 유관기관",
-    "support_content": "투자유치, 판로지원, 대기업 협업 등 다양한 프로그램 운영 [개최 일정]: 2025년 7. 16.(수) ~ 18.(금) [개최 장소]: 코엑스(COEX) C홀",
-    "apply_method": "AFPRO 2025 전용 홈페이지 접수 (4월부터 모집 예정) - 홈페이지: startup-afpro.kr\n- 문의처: 창업육성팀 (063-919-1431)"
+    "program_type": "EXPO",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["스마트농업", "그린바이오", "푸드테크"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "스마트농업, 그린바이오, 푸드테크 등에 해당하는 농식품 창업기업 및 유관기관",
+    "raw_support_content": "투자유치, 판로지원, 대기업 협업 등 다양한 프로그램 운영 [개최 일정]: 2025년 7. 16.(수) ~ 18.(금) [개최 장소]: 코엑스(COEX) C홀",
+    "raw_apply_method": "AFPRO 2025 전용 홈페이지 접수 (4월부터 모집 예정) - 홈페이지: startup-afpro.kr\n- 문의처: 창업육성팀 (063-919-1431)"
   },
   {
     "program_name": "그린바이오제품 상용화 지원",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "그린바이오분야 기업",
-    "support_content": "그린바이오분야 제품 상용화에 필요한 안전성, 효능검증, 시제품제작, 공정개선 등 사업화에 필요한 자금지원\n[상세 지원 규모 및 조건]:\n- 사업화 지원 (13社): 기업당 25백만원 지원 (자부담 50% 별도: 현금 15% + 현물 35%)\n- 해외진출 지원 (15社): 기업당 40백만원 지원 (자부담 50% 별도: 현금 15% + 현물 35%)\n- 총 자금 규모: 925백만원",
-    "apply_method": "농식품창업정보망(www.a-startups.or.kr)을 통해 온라인 접수 (신청 시기: 2~3월). 선정절차: 공고 -> 신청·접수 -> 신청자격 검토 -> 서류평가 -> 현장평가 -> 발표평가 -> 최종선정. 문의처: 그린바이오사업팀 (063-919-1426)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["그린바이오"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": true
+    },
+    "raw_target_audience": "그린바이오분야 기업",
+    "raw_support_content": "그린바이오분야 제품 상용화에 필요한 안전성, 효능검증, 시제품제작, 공정개선 등 사업화에 필요한 자금지원 (해외진출 지원 포함)",
+    "raw_apply_method": "농식품창업정보망(www.a-startups.or.kr)을 통해 온라인 접수 (신청 시기: 2~3월). 선정절차: 공고 -> 신청·접수 -> 신청자격 검토 -> 서류평가 -> 현장평가 -> 발표평가 -> 최종선정. 문의처: 그린바이오사업팀 (063-919-1426)"
   },
   {
     "program_name": "우수 신품종 종자 생산·보급",
-    "collaborators": "농촌진흥청 등 국내 연구기관",
-    "target_audience": "농업인, 농업인 단체(법인), 농산업체, 농업기술센터 등 우수 품종 종자 수요자",
-    "support_content": "우수 신품종 종자의 증식 및 보급",
-    "apply_method": "'종자광장(www.seedplaza.or.kr)' 홈페이지 또는 전화주문 신청. 신청 시기: 특수미(1~2월, 3~5월), 밭작물(1월, 2~5월), 맥류(8~10월, 2월). 문의처: 종자사업팀 (063-919-1614~6)"
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농업", "종자"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": true,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농업인, 농업인 단체(법인), 농산업체, 농업기술센터 등 우수 품종 종자 수요자",
+    "raw_support_content": "우수 신품종 종자의 증식 및 보급",
+    "raw_apply_method": "'종자광장(www.seedplaza.or.kr)' 홈페이지 또는 전화주문 신청. 신청 시기: 특수미(1~2월, 3~5월), 밭작물(1월, 2~5월), 맥류(8~10월, 2월). 문의처: 종자사업팀 (063-919-1614~6)"
   },
   {
     "program_name": "영양번식작물 우량종묘 증식 및 보급",
-    "collaborators": "국가·지자체",
-    "target_audience": "농업인, 농업인단체(법인), 농산업체, 농업기술센터 등 신품종 우량종묘 수요자",
-    "support_content": "고구마, 과수, 화훼, 약용작물 등 영양번식작물 우량종묘 보급",
-    "apply_method": "시군농업기술센터를 통한 수요조사(공문), 전화주문, 농진원 방문 접수. 신청 시기: 연중 수시. 문의처: 종묘사업팀 [조직배양실] 063-919-1646, [순화온실] 063-919-1647"
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농업", "종묘", "과수", "화훼", "약용작물"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": true,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농업인, 농업인단체(법인), 농산업체, 농업기술센터 등 신품종 우량종묘 수요자",
+    "raw_support_content": "고구마, 과수, 화훼, 약용작물 등 영양번식작물 우량종묘 보급",
+    "raw_apply_method": "시군농업기술센터를 통한 수요조사(공문), 전화주문, 농진원 방문 접수. 신청 시기: 연중 수시. 문의처: 종묘사업팀 [조직배양실] 063-919-1646, [순화온실] 063-919-1647"
   },
   {
     "program_name": "과수 무병화 품질인증",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "과수 무병묘 보급률 향상을 위한 종자업자 및 묘목업체",
-    "support_content": "바이러스 및 바이로이드가 없는 과수 무병묘 보급률 향상을 위한 인증 업무 추진",
-    "apply_method": "묘목 식재 후 1개월 이내에 무병화인증 신청서와 관련 서류(종자업등록증 사본, 모수 종자검정 증명서 등 4종) 제출. 신청 시기: 포트묘 1월, 일반묘 4월. 심사절차: 인증신청 ‣ 인증심사반 편성 ‣ 인증심사 ‣ 무병화 여부 판정 ‣ 인증번호 부여 및 무병화 인증서 발급. 문의처: 종묘사업팀 (063-919-1630, 1641)"
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["종자", "묘목", "농업"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": true,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "과수 무병묘 보급률 향상을 위한 종자업자 및 묘목업체",
+    "raw_support_content": "바이러스 및 바이로이드가 없는 과수 무병묘 보급률 향상을 위한 인증 업무 추진",
+    "raw_apply_method": "묘목 식재 후 1개월 이내에 무병화인증 신청서와 관련 서류 제출. 신청 시기: 포트묘 1월, 일반묘 4월. 문의처: 종묘사업팀 (063-919-1630, 1641)"
   },
   {
     "program_name": "첨단 육종기술 서비스 운영",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "개인 육종가, 종자기업, 시험연구기관",
-    "support_content": "종자·식물체·DNA의 분자표지 분석",
-    "apply_method": "종자산업진흥센터 홈페이지(seedcenter.koat.or.kr)에서 시험 의뢰서 작성 후 분석시료 제출(방문, 우편, 택배). 신청 시기: 연중 수시. 절차: 사업의뢰 ‣ 시험 접수 ‣ 시험 진행 ‣ 시험 결과 통보. 문의처: 종자산업진흥팀 (063-219-8853)"
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["종자", "연구기관", "육종"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "개인 육종가, 종자기업, 시험연구기관",
+    "raw_support_content": "종자·식물체·DNA의 분자표지 분석",
+    "raw_apply_method": "종자산업진흥센터 홈페이지(seedcenter.koat.or.kr)에서 시험 의뢰서 작성 후 분석시료 제출(방문, 우편, 택배). 신청 시기: 연중 수시. 문의처: 종자산업진흥팀 (063-219-8853)"
   },
   {
     "program_name": "스마트팜ICT기자재 국가표준 확산지원",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "스마트농업 ICT기자재 제조업체 및 관련 재직자",
-    "support_content": "스마트팜 분야 국가표준 현장 확산을 통한 ICT 기자재 품질 향상 및 호환성 증가를 통한 스마트농업 전후방 산업 활성화 지원\n[상세 지원 내용 및 국고 보조율]:\n- ① 표준 컨설팅 (국가표준 적용 기획, 판로개척 등): 국고 70%\n- ② 시제품 제작 및 실증 (국가표준 적용 제품 제작/개선): 국고 50~70%\n- ③ 검정바우처 지원 (성능, 안전성, 호환성 검정 및 기술지도): 국고 70%\n- ④ 표준화 지원센터 운영 (산·학·관·연 전문가 네트워크): 국고 100%\n- ⑤ 성과 홍보 및 사업 성과관리 추진: 국고 100%\n- ⑥ 재직자 전문교육 (스마트팜 ICT 분야별 전문교육): 국고 70%",
-    "apply_method": "국가표준확산지원 홈페이지(https://smartfarm-standard.kr)를 통한 온라인 접수 또는 담당부서 문의 및 상담. 문의처: 스마트농업진흥팀 (063-919-1717, E-mail: cgncmk@koat.or.kr)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["스마트농업", "스마트팜", "ICT기자재"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": true,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "스마트농업 ICT기자재 제조업체 및 관련 재직자",
+    "raw_support_content": "스마트팜 분야 국가표준 현장 확산을 통한 ICT 기자재 품질 향상 및 호환성 증가를 통한 스마트농업 전후방 산업 활성화 지원",
+    "raw_apply_method": "국가표준확산지원 홈페이지(https://smartfarm-standard.kr)를 통한 온라인 접수 또는 담당부서 문의 및 상담. 문의처: 스마트농업진흥팀 (063-919-1717, E-mail: cgncmk@koat.or.kr)"
   },
   {
     "program_name": "데이터 기반 스마트농업 확산지원 사업",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "스마트팜, 데이터·AI 관련 기업 및 농가 컨소시엄",
-    "support_content": "상용화된 스마트농업 서비스/솔루션의 제품 고도화 및 현장 보급 지원\n[지원 규모 및 조건]: 총 지원비 3,752백만원 (자부담 30~50% 별도)\n- 1단계 신규 (14개소): 컨소시엄당 2.5억원 지원 (농가 50호 내외 보급)\n- 1단계 기존 (3개소): 컨소시엄당 0.4억원 지원 (고도화 및 유지보수 비용)\n- 2단계 주산지 확산 (3개소): 컨소시엄당 8.12억원 지원 (농가 160호 내외 보급)",
-    "apply_method": "이메일 접수 (hsbjin92@koat.or.kr). 선정절차: 홍보공고 및 설명회 -> 평가 절차(적격성, 발표평가) -> 조정 및 협약(보급규모 조정, 예산교부) -> 관리 점검(중간점검, 현장점검, 최종평가 등). 문의처: 스마트농업진흥팀 (063-919-1715, E-mail: hsbjin92@koat.or.kr)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["스마트농업", "스마트팜", "데이터", "AI"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "스마트팜, 데이터·AI 관련 기업 및 농가 컨소시엄",
+    "raw_support_content": "상용화된 스마트농업 서비스/솔루션의 제품 고도화 및 현장 보급 지원",
+    "raw_apply_method": "이메일 접수 (hsbjin92@koat.or.kr). 선정절차: 홍보공고 및 설명회 -> 평가 절차(적격성, 발표평가) -> 조정 및 협약(보급규모 조정, 예산교부) -> 관리 점검(중간점검, 현장점검, 최종평가 등). 문의처: 스마트농업진흥팀 (063-919-1715, E-mail: hsbjin92@koat.or.kr)"
   },
   {
     "program_name": "지역혁신클러스터육성(비R&D) 스마트농업 기업지원사업",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "전북 소재 스마트농업 농생명분야 ICT융합기업",
-    "support_content": "1. 국내 농업현장(수요농가)에 스마트농업 ICT기자재 적용 및 현장실증 비용 지원\n2. 재직자 대상 스마트농업관련 전문 교육 지원\n3. 현장에서 요구하는 스마트농업ICT기자재 등 현장실증 테스트베드 지원을 통한 제품개선\n4. 공공기관 보유 스마트농업 우수기술의 지역 업체 이전 및 기술사업화 촉진\n5. 현장에서 요구하는 제품 안정성, 경제성 소비자 테스트 등 기술지원을 통한 제품 경쟁력 확보 지원\n[상세 지원 규모]: 기업당 최대 50백만원 이내 지원 (현금 자부담 10% 별도, 부가세 미포함)",
-    "apply_method": "농진원 홈페이지(www.koat.or.kr) 내 KoAT소식 사업공고 메뉴를 통해 접수 (신청 시기: 1~2월). 선정절차: 사업 공고 및 접수 -> 선정 평가 -> 협약 체결 및 사업비 지급 -> 최종평가. 문의처: 스마트농업진흥팀 (063-919-1727, E-mail: hwt1424@koat.or.kr)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전북"],
+      "allowed_industries": ["스마트농업", "농생명", "ICT융합"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "전북 소재 스마트농업 농생명분야 ICT융합기업",
+    "raw_support_content": "국내 농업현장(수요농가)에 스마트농업 ICT기자재 적용 및 현장실증 비용 지원, 재직자 교육, 제품 안정성/경제성 테스트 지원 등 (기업당 최대 50백만원 이내 지원)",
+    "raw_apply_method": "농진원 홈페이지(www.koat.or.kr) 내 KoAT소식 사업공고 메뉴를 통해 접수 (신청 시기: 1~2월). 문의처: 스마트농업진흥팀 (063-919-1727, E-mail: hwt1424@koat.or.kr)"
   },
   {
     "program_name": "스마트팜 실증단지 실증기업 지원사업",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "스마트팜 혁신밸리 실증단지 입주기업, 연구기관, 농업인 등",
-    "support_content": "실증단지 인프라 활용 관련 비용 지원 (실증온실 이용료·공과금, 실증제품 설계변경 및 고도화, 홍보물 및 특허, 검·인증 등)\n[상세 지원 규모]: 총 정부출연금 2,000백만원 규모 (자부담 50% 별도, 기업 선지출 후 사후 정산 방식)",
-    "apply_method": "스마트팜 혁신밸리 실증단지 담당자 수시 문의 (별도 선정평가 절차 없음, 기업 선지출 후 사후 정산 방식). 문의처: 혁신기술실증팀 [익산] 063-919-1771, [김제] 063-548-3552, [상주] 054-536-9735"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["스마트팜", "스마트농업"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": true,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "스마트팜 혁신밸리 실증단지 입주기업, 연구기관, 농업인 등",
+    "raw_support_content": "실증단지 인프라 활용 관련 비용 지원 (실증온실 이용료·공과금, 실증제품 설계변경 및 고도화, 홍보물 및 특허, 검·인증 등)",
+    "raw_apply_method": "스마트팜 혁신밸리 실증단지 담당자 수시 문의 (별도 선정평가 절차 없음, 기업 선지출 후 사후 정산 방식). 문의처: 혁신기술실증팀 [익산] 063-919-1771, [김제] 063-548-3552, [상주] 054-536-9735"
   },
   {
     "program_name": "스마트팜 청년창업 보육센터 사업",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "전공 무관한 18세 이상 ~ 39세 이하 청년 (총 208명)",
-    "support_content": "스마트팜 특화 실습 중심의 전문화·체계화된 장기 취·창업 교육을 통한 스마트팜 청년 전문인력 양성 및 청년창업 촉진\n[상세 지원 규모 및 일정]: 총 국비 8,000백만원 지원 (국비 100%)\n- 입문교육 (2개월) -> 교육형 실습 (6개월, 실습비 월 70만원 지원) -> 경영형 실습 (12개월, 온실 실습비 및 재료비 지원)\n- 후속교육 (임대형 스마트팜 미입주 보육생 대상 최대 6개월간 현장실습비 월 70만원 지원)\n- 모집 규모: 총 208명 (4개 보육센터별 52명 선발 - 전북, 전남, 경북, 경남)",
-    "apply_method": "스마트팜코리아 홈페이지 온라인 공고 및 신청. 선정절차: 모집공고 ‣ 적격심사(서류 누락 및 적격 여부 검토) ‣ 서류심사(동기 구체성, 계획 적절성 등) ‣ 면접심사(농업에 대한 자세, 협업·창업역량 등). 문의처: 혁신기술실증팀 (063-919-1772, jaehoon@koat.or.kr / 063-919-1786, purify0707@koat.or.kr)"
+    "program_type": "EDUCATION",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 39,
+      "target_locations": ["전국"],
+      "allowed_industries": ["스마트팜", "농업"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "전공 무관한 18세 이상 ~ 39세 이하 청년 (총 208명)",
+    "raw_support_content": "스마트팜 특화 실습 중심의 전문화·체계화된 장기 취·창업 교육을 통한 스마트팜 청년 전문인력 양성 및 청년창업 촉진",
+    "raw_apply_method": "스마트팜코리아 홈페이지 온라인 공고 및 신청. 선정절차: 모집공고 ‣ 적격심사(서류 누락 및 적격 여부 검토) ‣ 서류심사(동기 구체성, 계획 적절성 등) ‣ 면접심사(농업에 대한 자세, 협업·창업역량 등). 문의처: 혁신기술실증팀 (063-919-1772, jaehoon@koat.or.kr / 063-919-1786, purify0707@koat.or.kr)"
   },
   {
     "program_name": "스마트팜 현장실습형 교육사업",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "농업계학교(고등, 대학) 졸업자, 신규 진입자 또는 일반농업인 / 스마트팜 교육 희망자",
-    "support_content": "스마트농업의 재배기술과 ICT 역량을 가진 스마트팜 전문 경영인 육성을 위한 교육과정(입문, 활용) 개발, 교육 운영 및 비용 지원\n[상세 지원 예산 및 모집 규모]: 총 국비 180백만원 규모 (국비 70%, 자부담 30%)\n- 스마트농업 입문과정: 총 120명 모집 (기수당 20명 내외, 12시간 내외 교육)\n- 스마트농업 활용과정: 총 30명 모집 (기수당 10명 내외, 40시간 내외 현장실습 교육)",
-    "apply_method": "스마트팜코리아, 한국농업기술진흥원, 농업교육포털 등 온라인 공고 및 신청. 문의처: 혁신기술실증팀 (063-919-1773, E-mail: sypark0209@koat.or.kr)"
+    "program_type": "EDUCATION",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["스마트농업", "스마트팜"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농업계학교(고등, 대학) 졸업자, 신규 진입자 또는 일반농업인 / 스마트팜 교육 희망자",
+    "raw_support_content": "스마트농업의 재배기술과 ICT 역량을 가진 스마트팜 전문 경영인 육성을 위한 교육과정(입문, 활용) 개발, 교육 운영 및 비용 지원",
+    "raw_apply_method": "스마트팜코리아, 한국농업기술진흥원, 농업교육포털 등 온라인 공고 및 신청. 문의처: 혁신기술실증팀 (063-919-1773, E-mail: sypark0209@koat.or.kr)"
   },
   {
     "program_name": "농업용 로봇 실증지원 사업",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "농업인 및 농업단체",
-    "support_content": "농업용 로봇 실증 지원 및 간접 지원",
-    "apply_method": "공고 및 접수, 선정 평가, 협약 기반 체결, 구축 및 현장 실증 중간 점검, 최종 평가를 거쳐 신청 가능 (신청 시기: 1~3월). 상세 정보는 농진원 홈페이지 공고를 통해 확인 필요함 (www.koat.or.kr > 공지사항 > 사업공고). E-mail: feelingto@koat.or.kr (ICT신뢰성평가팀). 자격 요건: 로봇 관련 기술 및 전문성을 보유한 기관/단체 또는 주산단지 소재지의 경영체를 등록한 단체 (법인, 작목반 등). 지원 내용: \n1. 실증 지원: 농진청 R&D 기반 농업용 로봇 구축 및 유지·보수 비용 지원\n2. 농업인 및 농업단체 지원: 농업용 로봇 무상 임대 및 관련 교육 등 간접 지원\n지원 금액 및 규모:\n- 실증 지원: 주산단지별 8.8억 원 이내 (국고보조 100%)\n- 지원 대상 (2025년): 과수·식량 주산단지 각 1개소\n- 문의처: ICT신뢰성평가팀 (063-919-1751)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농업로봇", "농업", "스마트농업"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": true,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농업인 및 농업단체 (로봇 관련 기술 및 전문성을 보유한 기관/단체 또는 주산단지 소재지의 경영체를 등록한 단체)",
+    "raw_support_content": "농업용 로봇 실증 지원 및 간접 지원 (농진청 R&D 기반 농업용 로봇 구축 및 유지·보수 비용 지원, 농업용 로봇 무상 임대 및 관련 교육 등 간접 지원)",
+    "raw_apply_method": "공고 및 접수, 선정 평가, 협약 기반 체결, 구축 및 현장 실증 중간 점검, 최종 평가를 거쳐 신청 가능 (신청 시기: 1~3월). 상세 정보는 농진원 홈페이지 공고를 통해 확인 필요함 (www.koat.or.kr > 공지사항 > 사업공고). E-mail: feelingto@koat.or.kr (ICT신뢰성평가팀)."
   },
   {
     "program_name": "농업기계 검정",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "농기계 제조업체 또는 수입업자",
-    "support_content": "농업기계 품질 및 안전성 향상으로 농산업체 기술력 제고 및 우량 농업기계 보급, 수출 촉진 지원",
-    "apply_method": "검정신청서 등 관련 서류 다운로드 및 작성 (방문, 우편, 팩스 등 다양한 방법 지원, 제품은 방문 접수 필요 등 세부 절차 확인 필요). 검정 유형에 따라 20 ~ 45일 이내 소요될 수 있음. 검정 계획 수립 및 결과 통보(우편) 등의 절차 포함됨. 수수료 납부(카드 결제, 계좌이체) 필요함. 검정 관련 문의처(E-mail: kimeunkuk@koat.or.kr, worms295@koat.or.kr)가 제공됨. 검정팀 연락처 정보 제공됨 (농기계검정팀, E-mail: kimeunkuk@koat.or.kr, E-mail: worms295@koat.or.kr). 국제 규격 시험(OECD, ISO, ASABE 등) 지원 포함됨. 검정 유형에 따라 20~45일 소요됨. 지원 내용에는 종합검정, 성능검정, 안전검정, 기술지도 검정 및 사후관리 지원 등이 포함됨. 지원 내용 및 규모, 지원 대상, 선정 절차, 제품 접수, 검정 계획 및 통보, 수수료 납부, 검정 수행, 결과 통보 등의 프로세스가 명시됨."
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농기계"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": true,
+      "is_global_or_export": true
+    },
+    "raw_target_audience": "농기계 제조업체 또는 수입업자",
+    "raw_support_content": "농업기계 품질 및 안전성 향상으로 농산업체 기술력 제고 및 우량 농업기계 보급, 수출 촉진 지원 (종합검정, 성능검정, 안전검정, 기술지도 검정 및 사후관리 지원)",
+    "raw_apply_method": "검정신청서 등 관련 서류 다운로드 및 작성 (방문, 우편, 팩스 등 다양한 방법 지원, 제품은 방문 접수 필요 등 세부 절차 확인 필요). 검정 유형에 따라 20 ~ 45일 이내 소요될 수 있음. 수수료 납부 필요함. 검정 관련 문의처(E-mail: kimeunkuk@koat.or.kr, worms295@koat.or.kr)"
   },
   {
     "program_name": "ICT 농기자재 검인증",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "농업분야 4차 산업혁명 관련 ICT 융복합 농기자재 및 관련 기관",
-    "support_content": "ICT 융복합 농기자재 검인증, ICT 기술 적용 수확 후 처리시설 건립 지원 및 전문 기술 지원",
-    "apply_method": "검정신청서 등 관련 서류 다운로드 및 작성 후 방문, 우편, 팩스(063-919-1769) 접수 (검정제품은 방문 접수). 문의처: ICT신뢰성평가팀 (063-919-1752, E-mail: orpheus310@koat.or.kr)"
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["스마트농업", "ICT기자재"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": true,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농업분야 4차 산업혁명 관련 ICT 융복합 농기자재 및 관련 기관",
+    "raw_support_content": "ICT 융복합 농기자재 검인증, ICT 기술 적용 수확 후 처리시설 건립 지원 및 전문 기술 지원",
+    "raw_apply_method": "검정신청서 등 관련 서류 다운로드 및 작성 후 방문, 우편, 팩스(063-919-1769) 접수 (검정제품은 방문 접수). 문의처: ICT신뢰성평가팀 (063-919-1752, E-mail: orpheus310@koat.or.kr)"
   },
   {
     "program_name": "온실가스 감축농가 신소득 창출지원",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "온실가스 감축기술을 적용하여 온실가스 배출량을 감축한 농가",
-    "support_content": "감축 실적(KOC)만큼 배출권 시장 거래를 통해 신소득 창출 지원",
-    "apply_method": "홈페이지 사업공고를 통한 신청 (한국농업기술진흥원 홈페이지에서 신청서 다운로드 후 작성 제출, 이메일/우편/팩스 접수 가능 (063-919-1598))\n- 문의처: 기후변화대응팀 (063-919-1590)\n- 신청 시기: 3~4월(예정)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농업", "온실가스감축"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": true,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "온실가스 감축기술을 적용하여 온실가스 배출량을 감축한 농가",
+    "raw_support_content": "감축 실적(KOC)만큼 배출권 시장 거래를 통해 신소득 창출 지원",
+    "raw_apply_method": "홈페이지 사업공고를 통한 신청 (한국농업기술진흥원 홈페이지에서 신청서 다운로드 후 작성 제출, 이메일/우편/팩스 접수 가능 (063-919-1598))\n- 문의처: 기후변화대응팀 (063-919-1590)\n- 신청 시기: 3~4월(예정)"
   },
   {
     "program_name": "저탄소 농산물 인증 지원",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "농가(농업인, 작목반, 생산자 단체), 농업기관(영농조합법인, 농업회사법인)",
-    "support_content": "인증 취득 관련 교육, 온실가스 배출량 산정보고서 작성 및 인증심사 대응 지원, 인증 심사비 지원(심사원 직접 파견)",
-    "apply_method": "이메일, 우편, 팩스 (063-919-1598) 접수 또는 온라인 신청서 제출 (한국농업기술진흥원/스마트그린푸드 홈페이지에서 신청서 다운로드 후 작성 제출). 신청 시기: 연 1~2회 (1~2월, 6~7월). \n- 문의처: 기후변화대응팀 (063-919-1585), 팩스: 063-919-1598"
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농업", "농식품"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": true,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농가(농업인, 작목반, 생산자 단체), 농업기관(영농조합법인, 농업회사법인)",
+    "raw_support_content": "인증 취득 관련 교육, 온실가스 배출량 산정보고서 작성 및 인증심사 대응 지원, 인증 심사비 지원(심사원 직접 파견)",
+    "raw_apply_method": "이메일, 우편, 팩스 (063-919-1598) 접수 또는 온라인 신청서 제출 (한국농업기술진흥원/스마트그린푸드 홈페이지에서 신청서 다운로드 후 작성 제출). 신청 시기: 연 1~2회 (1~2월, 6~7월). \n- 문의처: 기후변화대응팀 (063-919-1585), 팩스: 063-919-1598"
   },
   {
     "program_name": "농식품부문 온실가스 목표관리제 지원",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "농식품부문 온실가스 목표관리제 관리업체 (대기업 및 글로벌기업 제외)",
-    "support_content": "온실가스 감축 및 대응역량 강화",
-    "apply_method": "우편 또는 방문접수 (사업공고문 참조, 한국농업기술진흥원 홈페이지에서 신청서 다운로드 후 작성 제출) (신청 시기: 매년 상반기, 서류평가 및 기술평가(평가회)를 거쳐 지원 대상 선정, 업무협약 체결 후 지원사업 수행으로 진행됨). [주요 지원 내용]:\n- 온실가스 감축 컨설팅 지원 (감축 아이템 발굴)\n- 온실가스 감축 지원 (에너지경영시스템 구축, 감축설비 구축)\n- 제도이행 보고서 작성 지원 (명세서, 이행계획서 작성 지원)\n- 문의처: 기후변화대응팀 (063-919-1583, 1584)"
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농식품"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": true,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "농식품부문 온실가스 목표관리제 관리업체 (대기업 및 글로벌기업 제외)",
+    "raw_support_content": "온실가스 감축 및 대응역량 강화",
+    "raw_apply_method": "우편 또는 방문접수 (사업공고문 참조, 한국농업기술진흥원 홈페이지에서 신청서 다운로드 후 작성 제출) (신청 시기: 매년 상반기, 서류평가 및 기술평가(평가회)를 거쳐 지원 대상 선정, 업무협약 체결 후 지원사업 수행으로 진행됨). [주요 지원 내용]:\n- 온실가스 감축 컨설팅 지원 (감축 아이템 발굴)\n- 온실가스 감축 지원 (에너지경영시스템 구축, 감축설비 구축)\n- 제도이행 보고서 작성 지원 (명세서, 이행계획서 작성 지원)\n- 문의처: 기후변화대응팀 (063-919-1583, 1584)"
   },
   {
     "program_name": "농식품부문 업종 온실가스 배출권거래제 지원",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "온실가스 배출권의 할당 및 거래에 관한 법률에서 정하는 지정기준 이상 음식료품 업종 할당대상업체 중 중소·중견기업",
-    "support_content": "온실가스 감축 관련 지원",
-    "apply_method": "우편 또는 방문접수 (한국농업기술진흥원 홈페이지 사업공고에서 신청서 다운로드 후 작성 제출)\n\n- 온실가스 감축(온실가스 감축수단 발굴 컨설팅, 온실가스 감축설비 구축, 에너지경영시스템(EnMS) 구축) 지원\n- 신규진입자 맞춤형 보고서 작성 지원\n- 문의처: 기후변화대응팀 (063-919-1583, 1584)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농식품", "음식료품"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": true,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "온실가스 배출권의 할당 및 거래에 관한 법률에서 정하는 지정기준 이상 음식료품 업종 할당대상업체 중 중소·중견기업",
+    "raw_support_content": "온실가스 감축 관련 지원",
+    "raw_apply_method": "우편 또는 방문접수 (한국농업기술진흥원 홈페이지 사업공고에서 신청서 다운로드 후 작성 제출)\n\n- 온실가스 감축(온실가스 감축수단 발굴 컨설팅, 온실가스 감축설비 구축, 에너지경영시스템(EnMS) 구축) 지원\n- 신규진입자 맞춤형 보고서 작성 지원\n- 문의처: 기후변화대응팀 (063-919-1583, 1584)"
   },
   {
     "program_name": "농업자원 분석",
-    "collaborators": "종합분석검정센터 (lab.koat.or.kr)",
-    "target_audience": "시험연구기관, 농업기술센터, 학교, 개인 또는 농산업체 등",
-    "support_content": "농업생산 기반인 토양, 용수, 식물체 등에 대한 물리화학분석 및 비료, 농약, 유기농업자재 등록 시험과 품질 관리에 필요한 농약, 비료, 미생물 등에 대한 글로벌 최고 수준의 고품질 시험분석서비스 제공",
-    "apply_method": "온라인 또는 오프라인 접수 (종합분석검정센터 홈페이지 이용, 사전 상담 후 접수). 온라인 또는 오프라인 접수 절차 상세 안내됨 (의뢰 → 시료제출/수수료납부 → 접수). 시료는 방문, 우편, 택배 이용 가능 (생물시료 500g, 특수시료는 상담 필요). 수수료 납부 방법: 카드결제, 계좌이체 (농협 301-0028-9822-11, 한국농업기술진흥원). 분석은 분석담당자와 사전 협의, 의뢰서 및 시료 제출, 수수료 납부 완료 후 진행됨. 분석 소요 기간: 분석 종류에 따라 14일 ~ 90일 소요됨. 분석 항목별 담당팀 연락처: 비료(063-919-1536), 농업환경(063-919-1534), 미생물(063-919-1540), 농약(063-919-1535)."
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농업"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "시험연구기관, 농업기술센터, 학교, 개인 또는 농산업체 등",
+    "raw_support_content": "농업생산 기반인 토양, 용수, 식물체 등에 대한 물리화학분석 및 비료, 농약, 유기농업자재 등록 시험과 품질 관리에 필요한 농약, 비료, 미생물 등에 대한 글로벌 최고 수준의 고품질 시험분석서비스 제공",
+    "raw_apply_method": "온라인 또는 오프라인 접수 (종합분석검정센터 홈페이지 이용, 사전 상담 후 접수). 온라인 또는 오프라인 접수 절차 상세 안내됨 (의뢰 → 시료제출/수수료납부 → 접수). 시료는 방문, 우편, 택배 이용 가능 (생물시료 500g, 특수시료는 상담 필요). 수수료 납부 방법: 카드결제, 계좌이체 (농협 301-0028-9822-11, 한국농업기술진흥원). 분석은 분석담당자와 사전 협의, 의뢰서 및 시료 제출, 수수료 납부 완료 후 진행됨. 분석 소요 기간: 분석 종류에 따라 14일 ~ 90일 소요됨. 분석 항목별 담당팀 연락처: 비료(063-919-1536), 농업환경(063-919-1534), 미생물(063-919-1540), 농약(063-919-1535)."
   },
   {
     "program_name": "농생명 분석",
-    "collaborators": "시험연구기관, 농업인, 농산업체 등",
-    "target_audience": "시험연구기관, 농업인, 농산업체, 학교, 시·도 농업기술원 및 농업기술센터 등 분석 서비스를 필요로 하는 주체",
-    "support_content": "농산물, 축산물, 사료의 일반·영양·기능·유해 성분분석과 동·식물의 유전자분석 등 선진 분석기술 기반 고품질 분석 서비스 제공",
-    "apply_method": "분석의뢰서 및 서류접수 (방문, 우편, 인터넷 등) 및 분석성분 및 시료량 등에 따른 사전 협의 필요 (분석일정 변동 가능). 분석담당자와 사전 협의, 의뢰서 및 시료제출, 수수료 납부 완료 후 분석 진행됨.\n- 문의처: 농산물(063-919-1552), 축산물(063-919-1551), 사료(063-919-1553), 유전자(063-919-1563)"
+    "program_type": "SERVICE",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농업", "축산", "사료"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": false
+    },
+    "raw_target_audience": "시험연구기관, 농업인, 농산업체, 학교, 시·도 농업기술원 및 농업기술센터 등 분석 서비스를 필요로 하는 주체",
+    "raw_support_content": "농산물, 축산물, 사료의 일반·영양·기능·유해 성분분석과 동·식물의 유전자분석 등 선진 분석기술 기반 고품질 분석 서비스 제공",
+    "raw_apply_method": "분석의뢰서 및 서류접수 (방문, 우편, 인터넷 등) 및 분석성분 및 시료량 등에 따른 사전 협의 필요 (분석일정 변동 가능). 분석담당자와 사전 협의, 의뢰서 및 시료제출, 수수료 납부 완료 후 분석 진행됨.\n- 문의처: 농산물(063-919-1552), 축산물(063-919-1551), 사료(063-919-1553), 유전자(063-919-1563)"
   },
   {
     "program_name": "해외 테스트베드 지원사업(국가지정형)",
-    "collaborators": "해외 공신력 있는 기관",
-    "target_audience": "해외시장 진출을 희망하는 농기자재 업체 (비료, 농약, 농기계, 친환경자재 등)",
-    "support_content": "농기자재 실증 및 마케팅 지원 (간접 지원)",
-    "apply_method": "농진원 홈페이지(www.koat.or.kr) 사업공고 확인 후 국가별 담당자 이메일 접수 (신청 시기: 2월~4월). 선정절차: 공고 -> 접수 -> 1차 서면평가(국내전문가) -> 2차 서면평가(해외실증기관) -> 선정 및 협약. 문의처: 글로벌사업팀 (중국/인도네시아: 063-919-1374, 베트남: 063-919-1376, 인도: 063-919-1371, 카자흐스탄: 063-919-1380, 폴란드: 063-919-1372)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농기자재"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": true
+    },
+    "raw_target_audience": "해외시장 진출을 희망하는 농기자재 업체 (비료, 농약, 농기계, 친환경자재 등)",
+    "raw_support_content": "농기자재 실증 및 마케팅 지원 (간접 지원)",
+    "raw_apply_method": "농진원 홈페이지(www.koat.or.kr) 사업공고 확인 후 국가별 담당자 이메일 접수 (신청 시기: 2월~4월). 선정절차: 공고 -> 접수 -> 1차 서면평가(국내전문가) -> 2차 서면평가(해외실증기관) -> 선정 및 협약. 문의처: 글로벌사업팀 (중국/인도네시아: 063-919-1374, 베트남: 063-919-1376, 인도: 063-919-1371, 카자흐스탄: 063-919-1380, 폴란드: 063-919-1372)"
   },
   {
     "program_name": "해외 테스트베드 지원사업(기업제안형)",
-    "collaborators": "기업",
-    "target_audience": "수출 예정 농기자재(비료, 농약, 농기계, 친환경자재 등)를 보유한 파트너사",
-    "support_content": "농기자재 실증 및 마케팅 지원 (직접 지원)",
-    "apply_method": "농진원 홈페이지(www.koat.or.kr) 사업공고 확인 후 담당자 이메일 접수 (신청 시기: 2월). 선정절차: 공고 -> 접수 -> 1차 서면평가 -> 2차 발표평가 -> 선정 및 협약. 문의처: 글로벌사업팀 (063-919-1372)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농기자재"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": true
+    },
+    "raw_target_audience": "수출 예정 농기자재(비료, 농약, 농기계, 친환경자재 등)를 보유한 파트너사",
+    "raw_support_content": "농기자재 실증 및 마케팅 지원 (직접 지원)",
+    "raw_apply_method": "농진원 홈페이지(www.koat.or.kr) 사업공고 확인 후 담당자 이메일 접수 (신청 시기: 2월). 선정절차: 공고 -> 접수 -> 1차 서면평가 -> 2차 발표평가 -> 선정 및 협약. 문의처: 글로벌사업팀 (063-919-1372)"
   },
   {
     "program_name": "KoAT 글로벌 마케팅 지원",
-    "collaborators": "농진원",
-    "target_audience": "해외시장 진출을 희망하는 우수 제품 및 기술을 보유한 농산업체 (농기계, 농자재, ICT·스마트팜, 종자)",
-    "support_content": "제품 현지화 지원 (현지 환경을 고려한 제품 리뉴얼 지원) 및 맞춤형 수출 마케팅 (해외진출을 위한 마케팅 활동비 지원)",
-    "apply_method": "농진원 홈페이지(www.koat.or.kr) 사업공고 확인 후 이메일 접수 (신청 기간: '25. 1. 16. ~ 1. 25.). 선정절차: 공고 ‣ 접수(이메일) ‣ 서면평가 ‣ 선정 및 협약. 문의처: 글로벌사업팀 (063-919-1379)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농기계", "농자재", "ICT", "스마트팜", "종자"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": true
+    },
+    "raw_target_audience": "해외시장 진출을 희망하는 우수 제품 및 기술을 보유한 농산업체 (농기계, 농자재, ICT·스마트팜, 종자)",
+    "raw_support_content": "제품 현지화 지원 (현지 환경을 고려한 제품 리뉴얼 지원) 및 맞춤형 수출 마케팅 (해외진출을 위한 마케팅 활동비 지원)",
+    "raw_apply_method": "농진원 홈페이지(www.koat.or.kr) 사업공고 확인 후 이메일 접수 (신청 기간: '25. 1. 16. ~ 1. 25.). 선정절차: 공고 ‣ 접수(이메일) ‣ 서면평가 ‣ 선정 및 협약. 문의처: 글로벌사업팀 (063-919-1379)"
   },
   {
     "program_name": "스마트팜 수출 활성화(시범온실 조성 및 운영)",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "한국형 스마트팜의 해외거점형 시범온실 구축 및 운영을 통한 관련기업 및 종사자의 해외진출 확대 촉진",
-    "support_content": "한국형 스마트팜 시범온실의 실시설계, 건축, 기자재비 등 스마트팜 온실 해외조성 비용",
-    "apply_method": "농진원 홈페이지(www.koat.or.kr) 사업공고 확인 후 이메일 접수\n- 문의처: 글로벌사업팀 (063-919-1375, 1377, 1378)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["스마트팜"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": true
+    },
+    "raw_target_audience": "한국형 스마트팜의 해외거점형 시범온실 구축 및 운영을 통한 관련기업 및 종사자의 해외진출 확대 촉진",
+    "raw_support_content": "한국형 스마트팜 시범온실의 실시설계, 건축, 기자재비 등 스마트팜 온실 해외조성 비용",
+    "raw_apply_method": "농진원 홈페이지(www.koat.or.kr) 사업공고 확인 후 이메일 접수\n- 문의처: 글로벌사업팀 (063-919-1375, 1377, 1378)"
   },
   {
     "program_name": "스마트팜 수출 활성화(해외 실증지원)",
-    "collaborators": "해외 정부·기관·기업 등",
-    "target_audience": "대한민국에 법인을 둔 국내 스마트팜 분야 농산업체로 해외 정부·기관·기업 등과 수출논의가 진행 중인 기업",
-    "support_content": "해외 실증에 수반되는 비용 지원 [지원 규모]: 총 6개사, 기업당 최대 100백만원 차등 지원 (중소기업: 정부지원 80백만원 / 자부담 20백만원, 중견기업: 정부지원 70백만원 / 자부담 30백만원)",
-    "apply_method": "농진원 홈페이지(www.koat.or.kr) 사업공고 확인 후 이메일 접수 (신청 기간: '25. 1. 20. ~ 2. 7., 수출계약서, 업무협약서, LoI, 실증의향서 등 필수 제출). 선정절차: 사업공고 ‣ 접수 ‣ 선정평가(서류·발표) ‣ 선정 및 협약. 문의처: 글로벌사업팀 (063-919-1378, 1375)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["스마트팜", "농산업체"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": true
+    },
+    "raw_target_audience": "대한민국에 법인을 둔 국내 스마트팜 분야 농산업체로 해외 정부·기관·기업 등과 수출논의가 진행 중인 기업",
+    "raw_support_content": "해외 실증에 수반되는 비용 지원 [지원 규모]: 총 6개사, 기업당 최대 100백만원 차등 지원 (중소기업: 정부지원 80백만원 / 자부담 20백만원, 중견기업: 정부지원 70백만원 / 자부담 30백만원)",
+    "raw_apply_method": "농진원 홈페이지(www.koat.or.kr) 사업공고 확인 후 이메일 접수 (신청 기간: '25. 1. 20. ~ 2. 7., 수출계약서, 업무협약서, LoI, 실증의향서 등 필수 제출). 선정절차: 사업공고 ‣ 접수 ‣ 선정평가(서류·발표) ‣ 선정 및 협약. 문의처: 글로벌사업팀 (063-919-1378, 1375)"
   },
   {
     "program_name": "농식품분야 글로벌 액셀러레이팅 지원",
-    "collaborators": "글로벌 탑티어 액셀러레이터(AC)",
-    "target_audience": "푸드테크, 애그태크, 그린바이오 분야 국내 창업기업 (설립 7년 이내)",
-    "support_content": "글로벌 액셀러레이팅 프로그램 참가, 해외진출 사업비 지원",
-    "apply_method": "농진원 홈페이지(www.koat.or.kr) 및 K-Startup 홈페이지(www.k-startup.go.kr) 사업공고 참조 후 신청 (선정 및 협약 절차 진행, 서류/발표 평가 후 선정 및 협약 체결). 중소기업창업 지원법 제25조에 따른 신산업 창업 분야 중소기업은 업력 10년까지 신청 가능함 (단, 본 사업은 설립 7년 이내 대상). 자부담 30% 포함됨 (기업당 평균 30백만원). 대상 국가: 싱가포르(6주), 태국(1주), 유럽(1주). 지원 규모: 창업기업 20개사. 총 사업비: 기업당 평균 30백만원 (자부담 30% 포함). 상세 지원 내용: 프로그램(국내 3주, 해외 8주)을 통한 해외 투자자 네트워킹, 해외투자 유치 역량 강화, 투자전략 수립, 데모데이, 투자 연계 등 지원. 사업비 항목: 프로그램 참가 여비, 해외 박람회 참가비, 해외 지재권 취득비 등. 선정 절차: 사업공고 확인 → 접수 → 선정평가(서류·발표) → 선정 및 협약"
+    "program_type": "EDUCATION",
+    "eligibility_filters": {
+      "max_business_age_years": 7,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["푸드테크", "애그테크", "그린바이오"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": true
+    },
+    "raw_target_audience": "푸드테크, 애그태크, 그린바이오 분야 국내 창업기업 (설립 7년 이내)",
+    "raw_support_content": "글로벌 액셀러레이팅 프로그램 참가, 해외진출 사업비 지원",
+    "raw_apply_method": "농진원 홈페이지(www.koat.or.kr) 및 K-Startup 홈페이지(www.k-startup.go.kr) 사업공고 참조 후 신청 (선정 및 협약 절차 진행, 서류/발표 평가 후 선정 및 협약 체결). 중소기업창업 지원법 제25조에 따른 신산업 창업 분야 중소기업은 업력 10년까지 신청 가능함 (단, 본 사업은 설립 7년 이내 대상). 자부담 30% 포함됨 (기업당 평균 30백만원). 대상 국가: 싱가포르(6주), 태국(1주), 유럽(1주). 지원 규모: 창업기업 20개사. 총 사업비: 기업당 평균 30백만원 (자부담 30% 포함). 상세 지원 내용: 프로그램(국내 3주, 해외 8주)을 통한 해외 투자자 네트워킹, 해외투자 유치 역량 강화, 투자전략 수립, 데모데이, 투자 연계 등 지원. 사업비 항목: 프로그램 참가 여비, 해외 박람회 참가비, 해외 지재권 취득비 등. 선정 절차: 사업공고 확인 → 접수 → 선정평가(서류·발표) → 선정 및 협약"
   },
   {
     "program_name": "K-농업기술 활용 해외진출모델 확산 사업",
-    "collaborators": "한국농업기술진흥원",
-    "target_audience": "관련 농업법인, 기업 등으로 구성된 컨소시엄",
-    "support_content": "우즈베키스탄 내 국산 낙농 기자재 실증에 수반되는 비용 지원 (실증비, 재료비, 여비, 물류비 등) [지원 규모]: 1개 컨소시엄 대상 총 사업비 210백만원 (국고보조금 165백만원, 자부담 45백만원 이상)",
-    "apply_method": "농진원 홈페이지 사업공고 참조 (접수: '25. 3. 20. ~ 4. 8., 선정평가: '25. 4월 중, 협약: '25. 4월 및 월별 협약 시점 등 확인 필요). 농진원 홈페이지(www.koat.or.kr) 사업공고 참조를 통해 신청 가능함. 컨소시엄 구성 및 실증 데이터 수집/분석 관련 기업 참여 필요 (구성분야: 젖소 수정란, 호르몬제, 사료첨가제, 백신, 실증 데이터 수집 및 분석 등).\n- 문의처: 글로벌사업팀 (063-919-1373, 1380)"
+    "program_type": "FUNDING",
+    "eligibility_filters": {
+      "max_business_age_years": 99,
+      "max_founder_age": 99,
+      "target_locations": ["전국"],
+      "allowed_industries": ["농업법인", "기자재"]
+    },
+    "scoring_factors": {
+      "needs_factory_or_farm": false,
+      "is_global_or_export": true
+    },
+    "raw_target_audience": "관련 농업법인, 기업 등으로 구성된 컨소시엄",
+    "raw_support_content": "우즈베키스탄 내 국산 낙농 기자재 실증에 수반되는 비용 지원 (실증비, 재료비, 여비, 물류비 등) [지원 규모]: 1개 컨소시엄 대상 총 사업비 210백만원 (국고보조금 165백만원, 자부담 45백만원 이상)",
+    "raw_apply_method": "농진원 홈페이지 사업공고 참조 (접수: '25. 3. 20. ~ 4. 8., 선정평가: '25. 4월 중, 협약: '25. 4월 및 월별 협약 시점 등 확인 필요). 농진원 홈페이지(www.koat.or.kr) 사업공고 참조를 통해 신청 가능함. 컨소시엄 구성 및 실증 데이터 수집/분석 관련 기업 참여 필요 (구성분야: 젖소 수정란, 호르몬제, 사료첨가제, 백신, 실증 데이터 수집 및 분석 등).\n- 문의처: 글로벌사업팀 (063-919-1373, 1380)"
   }
 ]
